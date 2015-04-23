@@ -17,6 +17,8 @@ public class Driver
         Display.setTitle("BowHunter");
         Display.createDisplay(750, 500);
         
+        
+        
     }
     
 }
