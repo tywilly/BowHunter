@@ -16,6 +16,7 @@ public class Driver
         
         Display.setTitle("BowHunter");
         Display.createDisplay(750, 500);
+        System.out.println("hello world");
         
     }
     
