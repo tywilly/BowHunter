@@ -8,6 +8,7 @@ package apcs;
 
 import apcs.scenes.GameScene;
 
+import com.tywilly.WillyEngine.Engine;
 import com.tywilly.WillyEngine.display.Display;
 import com.tywilly.WillyEngine.scene.SceneManager;
 
@@ -15,15 +16,22 @@ import com.tywilly.WillyEngine.scene.SceneManager;
 public class Driver
 {
     
+	Engine engine;
+	
     public static void main(String[] args){
         
-        Display.setTitle("BowHunter");
-        Display.createDisplay(750, 500);
-        
-        
-        
-        SceneManager.loadScene(new GameScene());
-        
+    	Driver driver = new Driver();
+    	
+    }
+    
+    public Driver(){
+    	
+    	engine = new Engine(Display.createDisplay(700, 700));
+    	engine.start();
+    	
+    	SceneManager.loadScene(new GameScene());
+    	
+    	
     }
     
 }

@@ -2,12 +2,12 @@ package apcs.scenes;
 
 import apcs.entitys.Arrow;
 
-import com.tywilly.WillyEngine.display.Display;
+import com.tywilly.WillyEngine.Engine;
 import com.tywilly.WillyEngine.scene.Scene;
 
 public class GameScene extends Scene{
 
-	Arrow arrow = new Arrow(Display.SCREEN_WIDTH, Display.SCREEN_HEIGHT/2);
+	Arrow arrow = new Arrow(0, Engine.display.getHeight()/2);
 	
 	@Override
 	public void onCreate() {

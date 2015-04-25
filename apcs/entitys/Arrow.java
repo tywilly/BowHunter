@@ -3,7 +3,7 @@ package apcs.entitys;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import com.tywilly.WillyEngine.display.Display;
+import com.tywilly.WillyEngine.Engine;
 import com.tywilly.WillyEngine.entity.Entity;
 import com.tywilly.WillyEngine.update.Updateable;
 
@@ -28,7 +28,7 @@ public class Arrow extends Entity implements Updateable{
 	public void update(long mili) {
 		// TODO Auto-generated method stub
 		
-		if(xLoc >= Display.SCREEN_WIDTH){
+		if(xLoc >= Engine.display.getWidth()){
 			xLoc = 0;
 		}
 		
