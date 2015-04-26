@@ -20,7 +20,7 @@ public class SpriteTest extends Sprite implements Updateable{
 			xLoc = 0;
 		}
 		
-		xLoc++;
+		xLoc += 1;
 		
 	}
 

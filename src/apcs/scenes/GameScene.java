@@ -15,7 +15,7 @@ public class GameScene extends Scene{
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		
-		//this.addEntity(arrow);
+		this.addEntity(arrow);
 		this.addEntity(spriteTest);
 		
 	}
