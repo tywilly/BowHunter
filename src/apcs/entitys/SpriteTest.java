@@ -9,9 +9,14 @@ import com.tywilly.WillyEngine.update.Updateable;
 
 public class SpriteTest extends Sprite implements Updateable, Input {
 
+	Texture rightTexture;
+	Texture leftTexture = new Texture("assets/obama_sprite_left.png");
+	
 	public SpriteTest(int x, int y) {
-		super(x, y, 64, 64, new Texture("assets/obama_sprite_left.png"));
+		super(x, y, 64, 64, new Texture("assets/obama_sprite_right.png"));
 		this.getTexture().loadIntoMemery();
+		rightTexture = this.getTexture();
+		leftTexture.loadIntoMemery();
 	}
 
 	@Override
@@ -25,8 +30,10 @@ public class SpriteTest extends Sprite implements Updateable, Input {
 		
 		if(e.getAction() == ActionType.KEYBOARD_DOWN){
 			if(e.getKeyCode() == 'd'){
+				this.setTexure(rightTexture);
 				xLoc += 4;
 			}else if(e.getKeyCode() == 'a'){
+				this.setTexure(leftTexture);
 				xLoc -= 4;
 			}else if(e.getKeyCode() == 'w'){
 				yLoc -= 4;
