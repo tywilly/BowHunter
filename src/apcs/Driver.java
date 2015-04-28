@@ -26,7 +26,7 @@ public class Driver
     
     public Driver(){
     	
-    	engine = new Engine(Display.createDisplay(700, 700));
+    	engine = new Engine(Display.createDisplay(1280, 720));
     	Engine.display.setTitle("Bow Hunter");
     	engine.start();
     	

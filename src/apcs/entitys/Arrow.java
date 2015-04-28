@@ -1,26 +1,37 @@
 package apcs.entitys;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
 import com.tywilly.WillyEngine.Engine;
-import com.tywilly.WillyEngine.entity.Entity;
+import com.tywilly.WillyEngine.entity.sprite.Sprite;
+import com.tywilly.WillyEngine.scene.SceneManager;
+import com.tywilly.WillyEngine.texture.Texture;
 import com.tywilly.WillyEngine.update.Updateable;
 
-public class Arrow extends Entity implements Updateable{
+public class Arrow extends Sprite implements Updateable{
 
+	int dir = 0;
 	
+	static Texture leftTexture = new Texture("assets/weapons/bullets/arrow_left.png");
+	static Texture rightTexture = new Texture("assets/weapons/bullets/arrow_right.png");
 	
-	public Arrow(int x, int y) {
-		super(x, y, 128, 128);
+	public Arrow(int x, int y, int dir) {
+		super(x, y, 64, 32, null);
 		// TODO Auto-generated constructor stub
-	}
-
-	public void paint(Graphics g){
 		
-		g.setColor(Color.CYAN);
 		
-		g.fillRect(xLoc, yLoc, 128, 128);
+		if(!leftTexture.isLoaded()){
+			leftTexture.loadIntoMemery();
+		}else if(!rightTexture.isLoaded()){
+			rightTexture.loadIntoMemery();
+		}
+		
+		this.dir = dir;
+		
+		if(this.dir == 2){
+			this.setTexure(rightTexture);
+		}else if(this.dir == 4){
+			this.setTexure(leftTexture);
+		}
+		
 		
 	}
 	
@@ -28,11 +39,17 @@ public class Arrow extends Entity implements Updateable{
 	public void update(long mili) {
 		// TODO Auto-generated method stub
 		
-		if(xLoc >= Engine.display.getWidth()){
-			xLoc = 0;
+		if(xLoc >= Engine.display.getWidth() || xLoc <= 0){
+			SceneManager.getCurrentScene().removeEntity(this);
 		}
 		
-		xLoc += (int) (1 * mili);
+		if(dir == 2){
+			xLoc += (int) (.75 * mili);
+		}else if(dir == 4){
+			xLoc -= (int) (.75 * mili);
+		}
+		
+		
 		
 	}
 	

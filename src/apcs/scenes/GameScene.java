@@ -1,23 +1,32 @@
 package apcs.scenes;
 
-import apcs.entitys.Arrow;
-import apcs.entitys.SpriteTest;
+import apcs.entitys.Player;
+import apcs.entitys.world.Grass;
 
 import com.tywilly.WillyEngine.Engine;
 import com.tywilly.WillyEngine.scene.Scene;
 
-public class GameScene extends Scene{
+public class GameScene extends Scene {
 
-	Arrow arrow = new Arrow(0, Engine.display.getHeight()/2);
-	SpriteTest spriteTest = new SpriteTest(Engine.display.getWidth()/2, Engine.display.getHeight()/4);
-	
+	Player spriteTest = new Player(Engine.display.getWidth() / 2,
+			Engine.display.getHeight() / 4);
+
 	@Override
 	public void onCreate() {
 		// TODO Auto-generated method stub
-		
-		this.addEntity(arrow);
+
+		// World loading
+
+		for (int i = 0; i < Engine.display.getWidth(); i += 64) {
+
+			for (int x = 0; x < Engine.display.getHeight(); x += 64) {
+				this.addEntity(new Grass(i, x));
+			}
+
+		}
+
 		this.addEntity(spriteTest);
-		
+
 	}
 
 }
