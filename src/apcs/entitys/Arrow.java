@@ -10,8 +10,8 @@ public class Arrow extends Sprite implements Updateable{
 
 	int dir = 0;
 	
-	static Texture leftTexture = new Texture("assets/weapons/bullets/arrow_left.png");
-	static Texture rightTexture = new Texture("assets/weapons/bullets/arrow_right.png");
+	static Texture leftTexture = new Texture("assets/weapons/bullets/new/arrow_left.png");
+	static Texture rightTexture = new Texture("assets/weapons/bullets/new/arrow_right.png");
 	
 	public Arrow(int x, int y, int dir) {
 		super(x, y, 64, 32, null);
@@ -44,9 +44,9 @@ public class Arrow extends Sprite implements Updateable{
 		}
 		
 		if(dir == 2){
-			xLoc += (int) (.75 * mili);
+			xLoc += (int) (1 * mili);
 		}else if(dir == 4){
-			xLoc -= (int) (.75 * mili);
+			xLoc -= (int) (1 * mili);
 		}
 		
 		

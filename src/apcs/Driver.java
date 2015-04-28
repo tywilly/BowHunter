@@ -30,7 +30,10 @@ public class Driver
     	Engine.display.setTitle("Bow Hunter");
     	engine.start();
     	
-    	SceneManager.loadScene(new GameScene());
+    	
+    	GameScene gs = new GameScene();
+    	
+    	SceneManager.loadScene(gs);
     	
     	
     }
