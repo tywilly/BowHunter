@@ -55,7 +55,7 @@ public class Player extends Sprite implements Updateable, Input {
 			if (yLoc + height / 2 <= Engine.display.getHeight() / 2
 					&& GameScene.world.getYLocation() <= 0) {
 				GameScene.world.moveWorld(0, (int) (0.5 * mili));
-			} else {
+			} else if(yLoc >= 0){
 				yLoc -= 0.5 * mili;
 			}
 
@@ -65,7 +65,7 @@ public class Player extends Sprite implements Updateable, Input {
 					&& -GameScene.world.getYLocation() <= GameScene.world
 							.getHeight() - Engine.display.getHeight()) {
 				GameScene.world.moveWorld(0, -(int) (0.5 * mili));
-			} else {
+			} else if(yLoc + height <= Engine.display.getHeight()){
 				yLoc += 0.5 * mili;
 			}
 
@@ -77,7 +77,7 @@ public class Player extends Sprite implements Updateable, Input {
 					&& -GameScene.world.getXLocation() <= GameScene.world
 							.getWidth() - Engine.display.getWidth()) {
 				GameScene.world.moveWorld((int) -(0.5 * mili), 0);
-			} else {
+			} else if(xLoc + width <= Engine.display.getWidth()){
 				xLoc += 0.5 * mili;
 			}
 		} else if (left) {
@@ -85,7 +85,7 @@ public class Player extends Sprite implements Updateable, Input {
 			if (xLoc + width / 2 <= Engine.display.getWidth() / 2
 					&& GameScene.world.getXLocation() <= 0) {
 				GameScene.world.moveWorld((int) (0.5 * mili), 0);
-			} else {
+			} else if(xLoc >= 0){
 				xLoc -= 0.5 * mili;
 			}
 		}
