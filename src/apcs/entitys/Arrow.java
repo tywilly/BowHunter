@@ -20,7 +20,8 @@ public class Arrow extends Sprite implements Updateable{
 		
 		if(!leftTexture.isLoaded()){
 			leftTexture.loadIntoMemery();
-		}else if(!rightTexture.isLoaded()){
+		}
+		if(!rightTexture.isLoaded()){
 			rightTexture.loadIntoMemery();
 		}
 		
