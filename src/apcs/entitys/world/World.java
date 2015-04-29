@@ -29,19 +29,22 @@ public class World {
 
 			while (scan.hasNextLine()) {
 
-				String[] split = scan.nextLine().split("");
+			    String line = scan.nextLine();
+			    
+				String[] split = new String[line.length()];
+				
+				for(int i=0;i< split.length;i++){
+				    split[i] = line.substring(i, i+1);
+				}
 
 				Entity worldTile = null;
 
 				for (int i = 0; i < split.length; i++) {
-					switch (split[i]) {
-					case "1":
-						worldTile = new Grass(i * 64, lineNum * 64);
-						break;
-
-					default:
-						break;
-					}
+				    if(split[i].equalsIgnoreCase("1")){
+				        worldTile = new Grass(i * 64, lineNum * 64);
+				    }else{
+				        System.out.println("Split broke!" + split[i]);
+				    }
 					world.add(worldTile);
 				}
 				lineNum++;
@@ -54,6 +57,8 @@ public class World {
 			
 			scan.close();
 
+			System.out.println("Loaded world!" + world.size());
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
