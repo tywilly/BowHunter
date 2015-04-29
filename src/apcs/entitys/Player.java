@@ -52,7 +52,7 @@ public class Player extends Sprite implements Updateable, Input {
 
 		if (up) {
 
-			if (yLoc + height/2 <= Engine.display.getHeight() / 2
+			if (yLoc + height / 2 <= Engine.display.getHeight() / 2
 					&& GameScene.world.getYLocation() <= 0) {
 				GameScene.world.moveWorld(0, (int) (0.5 * mili));
 			} else {
@@ -60,10 +60,10 @@ public class Player extends Sprite implements Updateable, Input {
 			}
 
 		} else if (down) {
-
-			if (yLoc + height/2 >= Engine.display.getHeight() / 2
-					&& GameScene.world.getYLocation() <= GameScene.world
-							.getHeight()) {
+			
+			if (yLoc + height / 2 >= Engine.display.getHeight() / 2
+					&& -GameScene.world.getYLocation() <= GameScene.world
+							.getHeight() - Engine.display.getHeight()) {
 				GameScene.world.moveWorld(0, -(int) (0.5 * mili));
 			} else {
 				yLoc += 0.5 * mili;
@@ -73,15 +73,16 @@ public class Player extends Sprite implements Updateable, Input {
 
 		if (right) {
 
-			if (xLoc + width/2 >= Engine.display.getWidth() / 2
-					&& GameScene.world.getXLocation() <= GameScene.world.getWidth()) {
+			if (xLoc + width / 2 >= Engine.display.getWidth() / 2
+					&& -GameScene.world.getXLocation() <= GameScene.world
+							.getWidth() - Engine.display.getWidth()) {
 				GameScene.world.moveWorld((int) -(0.5 * mili), 0);
 			} else {
 				xLoc += 0.5 * mili;
 			}
 		} else if (left) {
 
-			if (xLoc + width/2<= Engine.display.getWidth() / 2
+			if (xLoc + width / 2 <= Engine.display.getWidth() / 2
 					&& GameScene.world.getXLocation() <= 0) {
 				GameScene.world.moveWorld((int) (0.5 * mili), 0);
 			} else {
