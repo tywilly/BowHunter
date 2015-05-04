@@ -124,15 +124,12 @@ public class Player extends Sprite implements Updateable, Input {
 
 		} else if (e.getAction() == ActionType.MOUSE_DOWN) {
 			if (e.getKeyCode() == '1') {
-				if (this.getTexture() == leftTexture) {
-					SceneManager.getCurrentScene().addEntity(
-							new Arrow(xLoc - this.width / 2,
-									(yLoc + this.height / 2) - 16, 4));
-				} else if (this.getTexture() == rightTexture) {
-					SceneManager.getCurrentScene().addEntity(
-							new Arrow(xLoc + this.width,
-									(yLoc + this.height / 2) - 16, 2));
-				}
+				
+			    int xDir = this.xLoc - e.getMouseX();
+			    int yDir = this.yLoc - e.getMouseY();
+			    
+			    SceneManager.getCurrentScene().addEntity(new Arrow(xLoc, yLoc, xDir, yDir));
+			    
 			}
 		}
 
