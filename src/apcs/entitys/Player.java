@@ -128,11 +128,17 @@ public class Player extends Sprite implements Updateable, Input {
 			    int xDir = this.xLoc - e.getMouseX();
 			    int yDir = this.yLoc - e.getMouseY();
 			    
-			    SceneManager.getCurrentScene().addEntity(new Arrow(xLoc, yLoc, xDir, yDir));
+			    shootProjectile(xDir, yDir);
 			    
 			}
 		}
 
 	}
 
+	public void shootProjectile(int xDir, int yDir){
+		
+		SceneManager.getCurrentScene().addEntity(new Arrow(xLoc, yLoc, xDir, yDir));
+		
+	}
+	
 }

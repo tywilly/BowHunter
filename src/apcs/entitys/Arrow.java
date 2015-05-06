@@ -1,12 +1,12 @@
 package apcs.entitys;
 
+import apcs.entitys.projectile.Projectile;
+
 import com.tywilly.WillyEngine.Engine;
-import com.tywilly.WillyEngine.entity.sprite.Sprite;
 import com.tywilly.WillyEngine.scene.SceneManager;
 import com.tywilly.WillyEngine.texture.Texture;
-import com.tywilly.WillyEngine.update.Updateable;
 
-public class Arrow extends Sprite implements Updateable
+public class Arrow extends Projectile
 {
 
     int xDir = 0;
@@ -21,7 +21,7 @@ public class Arrow extends Sprite implements Updateable
 
     public Arrow(int x, int y, int xdir, int ydir)
     {
-        super(x, y, 64, 32, null);
+        super(x, y, 64, 64, xdir, ydir, null);
         // TODO Auto-generated constructor stub
 
         if (!leftTexture.isLoaded())
