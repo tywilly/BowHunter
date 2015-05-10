@@ -6,13 +6,15 @@ import apcs.entitys.item.Item;
 
 public class Inventory {
 
-	Item hand;
+	private Item hand;
 	
 	ArrayList<Item> backpack = new ArrayList<Item>();
 	
+	public void setHandItem(Item item){
+		hand = item;
+	}
 	
-	
-	public Item getHand(){
+	public Item getHandItem(){
 		return hand;
 	}
 	

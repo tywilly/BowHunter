@@ -5,9 +5,10 @@ import java.awt.Font;
 import java.awt.Graphics;
 
 import apcs.entitys.item.ActionItem;
+import apcs.entitys.item.weapons.Bow;
+import apcs.entitys.item.weapons.Weapon;
 import apcs.entitys.player.skills.AttackSkill;
 import apcs.entitys.player.skills.DefenseSkill;
-import apcs.entitys.projectile.Arrow;
 import apcs.scenes.GameScene;
 
 import com.tywilly.WillyEngine.Engine;
@@ -15,7 +16,6 @@ import com.tywilly.WillyEngine.entity.sprite.Sprite;
 import com.tywilly.WillyEngine.input.Input;
 import com.tywilly.WillyEngine.input.InputAction;
 import com.tywilly.WillyEngine.input.InputAction.ActionType;
-import com.tywilly.WillyEngine.scene.SceneManager;
 import com.tywilly.WillyEngine.texture.Texture;
 import com.tywilly.WillyEngine.update.Updateable;
 
@@ -46,6 +46,9 @@ public class Player extends Sprite implements Updateable, Input {
 		this.getTexture().loadIntoMemery();
 		rightTexture = this.getTexture();
 		leftTexture.loadIntoMemery();
+		
+		inventory.setHandItem(new Bow());
+		
 	}
 
 	@Override
@@ -138,13 +141,13 @@ public class Player extends Sprite implements Updateable, Input {
 		} else if (e.getAction() == ActionType.MOUSE_DOWN) {
 			if (e.getKeyCode() == '1') {
 				
-//			    int xDir = (this.xLoc + (this.width/2)) - e.getMouseX();
-//			    int yDir = (this.yLoc + (this.height/2)) - e.getMouseY();
-//			    
-//			    shootProjectile(xDir, yDir);
+			    int xDir = (this.xLoc + (this.width/2)) - e.getMouseX();
+			    int yDir = (this.yLoc + (this.height/2)) - e.getMouseY();
 				
-				if(inventory.getHand() instanceof ActionItem){
-					((ActionItem) inventory.getHand()).onAction(this);
+				if(inventory.getHandItem() instanceof Weapon){
+					((Weapon) inventory.getHandItem()).onAction(this, xDir, yDir);
+				}else if(inventory.getHandItem() instanceof ActionItem){
+					((ActionItem) inventory.getHandItem()).onAction(this);
 				}
 				
 			}
