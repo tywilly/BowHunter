@@ -1,9 +1,10 @@
 package apcs.scenes;
 
-import apcs.entitys.Player;
+import apcs.entitys.player.Player;
 import apcs.entitys.world.World;
 
 import com.tywilly.WillyEngine.Engine;
+import com.tywilly.WillyEngine.entity.text.DebugInfo;
 import com.tywilly.WillyEngine.scene.Scene;
 
 public class GameScene extends Scene {
@@ -24,6 +25,7 @@ public class GameScene extends Scene {
 		world.addToScene();
 		
 		this.addEntity(spriteTest);
+		this.addEntity(new DebugInfo());
 
 	}
 

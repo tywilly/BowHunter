@@ -59,19 +59,8 @@ public class Arrow extends Projectile
             SceneManager.getCurrentScene().removeEntity(this);
         }
 
-        if(-xDir > 0){
-            xLoc += (int) (1 * mili);
-        }else if(-xDir < 0){
-            xLoc -= (int) (1 * mili);
-        }
-        
-        if(-yDir > 0){
-            yLoc += (int) (1 * mili);
-        }else if(-yDir < 0){
-            yLoc -= (int) (1 * mili);
-        }
-
-        
+        xLoc += xDir;
+        yLoc += yDir;
         
     }
 

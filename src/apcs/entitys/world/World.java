@@ -78,7 +78,7 @@ public class World {
 		xLoc += x;
 		
 		for(int i=0;i<world.size();i++){
-			world.get(i).setX((world.get(i).getX()+ x));
+			world.get(i).setX((world.get(i).getX() + x));
 			world.get(i).setY((world.get(i).getY() + y));
 		}
 		

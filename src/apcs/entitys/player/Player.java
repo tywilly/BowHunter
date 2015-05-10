@@ -1,9 +1,12 @@
-package apcs.entitys;
+package apcs.entitys.player;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
+import apcs.entitys.Arrow;
+import apcs.entitys.player.skills.AttackSkill;
+import apcs.entitys.player.skills.DefenseSkill;
 import apcs.scenes.GameScene;
 
 import com.tywilly.WillyEngine.Engine;
@@ -26,6 +29,13 @@ public class Player extends Sprite implements Updateable, Input {
 	boolean left = false;
 	boolean up = false;
 	boolean down = false;
+	
+	/*
+	 * Skills
+	 */
+	
+	AttackSkill atackSkill;
+	DefenseSkill defenseSkill;
 
 	public Player(int x, int y) {
 		super(x, y, 64, 64, new Texture(
@@ -108,7 +118,7 @@ public class Player extends Sprite implements Updateable, Input {
 			} else if (e.getKeyCode() == 's') {
 				down = true;
 			} else if (e.getKeyCode() == ' ') {
-
+				shootProjectile(1, 0);
 			}
 		} else if (e.getAction() == ActionType.KEYBOARD_UP) {
 
@@ -125,8 +135,8 @@ public class Player extends Sprite implements Updateable, Input {
 		} else if (e.getAction() == ActionType.MOUSE_DOWN) {
 			if (e.getKeyCode() == '1') {
 				
-			    int xDir = this.xLoc - e.getMouseX();
-			    int yDir = this.yLoc - e.getMouseY();
+			    int xDir = (this.xLoc + (this.width/2)) - e.getMouseX();
+			    int yDir = (this.yLoc + (this.height/2)) - e.getMouseY();
 			    
 			    shootProjectile(xDir, yDir);
 			    
