@@ -1,5 +1,5 @@
 package apcs.entitys.player.skills;
 
-public class DefenseSkill {
+public class DefenseSkill extends Skill{
 
 }

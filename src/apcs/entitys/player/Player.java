@@ -4,9 +4,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
-import apcs.entitys.Arrow;
+import apcs.entitys.item.ActionItem;
 import apcs.entitys.player.skills.AttackSkill;
 import apcs.entitys.player.skills.DefenseSkill;
+import apcs.entitys.projectile.Arrow;
 import apcs.scenes.GameScene;
 
 import com.tywilly.WillyEngine.Engine;
@@ -30,12 +31,14 @@ public class Player extends Sprite implements Updateable, Input {
 	boolean up = false;
 	boolean down = false;
 	
+	Inventory inventory = new Inventory();
+	
 	/*
 	 * Skills
 	 */
 	
-	AttackSkill atackSkill;
-	DefenseSkill defenseSkill;
+	AttackSkill atackSkill = new AttackSkill();
+	DefenseSkill defenseSkill = new DefenseSkill();
 
 	public Player(int x, int y) {
 		super(x, y, 64, 64, new Texture(
@@ -118,7 +121,7 @@ public class Player extends Sprite implements Updateable, Input {
 			} else if (e.getKeyCode() == 's') {
 				down = true;
 			} else if (e.getKeyCode() == ' ') {
-				shootProjectile(1, 0);
+				//shootProjectile(1, 0);
 			}
 		} else if (e.getAction() == ActionType.KEYBOARD_UP) {
 
@@ -135,20 +138,22 @@ public class Player extends Sprite implements Updateable, Input {
 		} else if (e.getAction() == ActionType.MOUSE_DOWN) {
 			if (e.getKeyCode() == '1') {
 				
-			    int xDir = (this.xLoc + (this.width/2)) - e.getMouseX();
-			    int yDir = (this.yLoc + (this.height/2)) - e.getMouseY();
-			    
-			    shootProjectile(xDir, yDir);
-			    
+//			    int xDir = (this.xLoc + (this.width/2)) - e.getMouseX();
+//			    int yDir = (this.yLoc + (this.height/2)) - e.getMouseY();
+//			    
+//			    shootProjectile(xDir, yDir);
+				
+				if(inventory.getHand() instanceof ActionItem){
+					((ActionItem) inventory.getHand()).onAction(this);
+				}
+				
 			}
 		}
 
 	}
-
-	public void shootProjectile(int xDir, int yDir){
-		
-		SceneManager.getCurrentScene().addEntity(new Arrow(xLoc, yLoc, xDir, yDir));
-		
+	
+	public Inventory getInventory(){
+		return inventory;
 	}
 	
 }

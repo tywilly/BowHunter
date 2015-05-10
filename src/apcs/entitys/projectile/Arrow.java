@@ -1,6 +1,4 @@
-package apcs.entitys;
-
-import apcs.entitys.projectile.Projectile;
+package apcs.entitys.projectile;
 
 import com.tywilly.WillyEngine.Engine;
 import com.tywilly.WillyEngine.scene.SceneManager;
