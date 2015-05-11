@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
-import apcs.entitys.Arrow;
 import apcs.entitys.item.ActionItem;
 import apcs.entitys.item.weapons.Bow;
 import apcs.entitys.item.weapons.Weapon;
@@ -17,7 +16,6 @@ import com.tywilly.WillyEngine.entity.sprite.Sprite;
 import com.tywilly.WillyEngine.input.Input;
 import com.tywilly.WillyEngine.input.InputAction;
 import com.tywilly.WillyEngine.input.InputAction.ActionType;
-import com.tywilly.WillyEngine.scene.SceneManager;
 import com.tywilly.WillyEngine.texture.Texture;
 import com.tywilly.WillyEngine.update.Updateable;
 
@@ -181,7 +179,7 @@ public class Player extends Sprite implements Updateable, Input
                 // int xDir = (this.xLoc + (this.width/2)) - e.getMouseX();
                 // int yDir = (this.yLoc + (this.height/2)) - e.getMouseY();
 
-                float xDir = e.getMouseX() - this.xLoc;
+                float xDir = Math.abs(e.getMouseX() - this.xLoc);
                 float yDir = e.getMouseY() - this.yLoc;
 
                 System.out.println("Mouse:" + xDir + " " + yDir);
@@ -195,6 +193,10 @@ public class Player extends Sprite implements Updateable, Input
                 }
                 
                 yDir = ((float) (xDir * Math.atan(angle)));
+                
+                if(xDir < 0){
+                    yDir = -yDir;
+                }
 
                 System.out.println("Arrow:" + xDir + " " + yDir + " Angle: "
                         + Math.toDegrees(angle));
