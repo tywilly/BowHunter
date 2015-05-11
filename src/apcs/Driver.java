@@ -10,7 +10,6 @@ import apcs.scenes.GameScene;
 
 import com.tywilly.WillyEngine.Engine;
 import com.tywilly.WillyEngine.display.Display;
-import com.tywilly.WillyEngine.entity.text.DebugInfo;
 import com.tywilly.WillyEngine.scene.SceneManager;
 
 
@@ -33,8 +32,6 @@ public class Driver
     	
     	
     	GameScene gs = new GameScene();
-    	
-    	//SceneManager.getCurrentScene().addEntity(new DebugInfo());
     	
     	SceneManager.loadScene(gs);
     	

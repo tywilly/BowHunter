@@ -1,9 +1,17 @@
-package apcs.entitys.projectile;
+package apcs.entitys;
 
+import com.tywilly.WillyEngine.Engine;
+import com.tywilly.WillyEngine.entity.sprite.Sprite;
+import com.tywilly.WillyEngine.scene.SceneManager;
 import com.tywilly.WillyEngine.texture.Texture;
+import com.tywilly.WillyEngine.update.Updateable;
 
-public class Arrow extends Projectile
+public class Arrow extends Sprite implements Updateable
 {
+
+    float xDir = 0;
+
+    float yDir = 0;
 
     static Texture leftTexture = new Texture(
             "assets/weapons/bullets/new/arrow_left.png");
@@ -13,7 +21,7 @@ public class Arrow extends Projectile
 
     public Arrow(int x, int y, float xdir, float ydir)
     {
-        super(x, y, 64, 64, xdir, ydir, null);
+        super(x, y, 64, 32, null);
         // TODO Auto-generated constructor stub
 
         if (!leftTexture.isLoaded())
@@ -25,6 +33,10 @@ public class Arrow extends Projectile
             rightTexture.loadIntoMemery();
         }
 
+        this.xDir = xdir;
+
+        this.yDir = ydir;
+
 //        if (this.dir == 2)
 //        {
 //            this.setTexure(rightTexture);
@@ -34,6 +46,21 @@ public class Arrow extends Projectile
 //        }
 
         this.setTexure(rightTexture);
+        
+    }
+
+    @Override
+    public void update(long mili)
+    {
+        // TODO Auto-generated method stub
+
+        if (xLoc >= Engine.display.getWidth() || xLoc <= 0)
+        {
+            SceneManager.getCurrentScene().removeEntity(this);
+        }
+
+        xLoc += xDir * mili;
+        yLoc += yDir * mili;
         
     }
 

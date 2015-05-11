@@ -11,6 +11,6 @@ public abstract class Weapon extends ActionItem{
 		
 	}
 
-	public abstract void onAction(Player p, int xDir, int yDir);
+	public abstract void onAction(Player p, float xDir, float yDir);
 	
 }
