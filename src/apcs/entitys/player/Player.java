@@ -4,11 +4,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
+import apcs.entitys.Damageable;
 import apcs.entitys.item.ActionItem;
 import apcs.entitys.item.weapons.Bow;
 import apcs.entitys.item.weapons.Weapon;
 import apcs.entitys.player.skills.AttackSkill;
 import apcs.entitys.player.skills.DefenseSkill;
+import apcs.entitys.projectile.Projectile;
 import apcs.scenes.GameScene;
 
 import com.tywilly.WillyEngine.Engine;
@@ -19,7 +21,7 @@ import com.tywilly.WillyEngine.input.InputAction.ActionType;
 import com.tywilly.WillyEngine.texture.Texture;
 import com.tywilly.WillyEngine.update.Updateable;
 
-public class Player extends Sprite implements Updateable, Input {
+public class Player extends Sprite implements Updateable, Input, Damageable {
 
 	String playerName = "Player 1";
 
@@ -34,6 +36,8 @@ public class Player extends Sprite implements Updateable, Input {
 	boolean up = false;
 
 	boolean down = false;
+	
+	int health = 100;
 
 	Inventory inventory = new Inventory();
 
@@ -181,6 +185,15 @@ public class Player extends Sprite implements Updateable, Input {
 
 	public Inventory getInventory() {
 		return inventory;
+	}
+
+	@Override
+	public void onDamage(Damageable killer, Projectile projectile) {
+		// TODO Auto-generated method stub
+		
+		this.health -= projectile.getDamage();
+		System.out.println("DAMAGE!" + this.health);
+		
 	}
 
 }

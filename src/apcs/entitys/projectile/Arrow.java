@@ -1,5 +1,7 @@
 package apcs.entitys.projectile;
 
+import apcs.entitys.Damageable;
+
 import com.tywilly.WillyEngine.texture.Texture;
 
 public class Arrow extends Projectile
@@ -11,9 +13,9 @@ public class Arrow extends Projectile
     static Texture rightTexture = new Texture(
             "assets/weapons/bullets/new/arrow_right.png");
 
-    public Arrow(int x, int y, float xdir, float ydir)
+    public Arrow(int x, int y, float xdir, float ydir, Damageable shooter)
     {
-        super(x, y, 64, 64, xdir, ydir, null);
+        super(x, y, 64, 64, xdir, ydir, null, 10, shooter);
         // TODO Auto-generated constructor stub
 
         if (!leftTexture.isLoaded())

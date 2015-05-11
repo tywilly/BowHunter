@@ -1,6 +1,8 @@
 package apcs.entitys.mob;
 
+import apcs.entitys.Damageable;
 import apcs.entitys.player.Player;
+import apcs.entitys.projectile.Projectile;
 import apcs.scenes.GameScene;
 
 import com.tywilly.WillyEngine.scene.SceneManager;
@@ -29,16 +31,28 @@ public class Human extends Mob{
 		
 		Player p = ((GameScene) SceneManager.getCurrentScene()).getPlayer();
 		
-		if(this.getX() > p.getX()){
-			xLoc -= (0.25 * mili);
-		}else if(this.getX() < p.getX()){
-			xLoc += (0.25 * mili);
-		}
+//		if(this.getX() > p.getX()){
+//			xLoc -= (0.25 * mili);
+//		}else if(this.getX() < p.getX()){
+//			xLoc += (0.25 * mili);
+//		}
+//		
+//		if(this.getY() > p.getY()){
+//			yLoc -= 0.25 * mili;
+//		}else if(this.getY() < p.getY()){
+//			yLoc += (0.25 * mili);
+//		}
 		
-		if(this.getY() > p.getY()){
-			yLoc -= 0.25 * mili;
-		}else if(this.getY() < p.getY()){
-			yLoc += (0.25 * mili);
+	}
+
+	@Override
+	public void onDamage(Damageable killer, Projectile projectile) {
+		// TODO Auto-generated method stub
+		
+		this.setHealth(this.getHealth() - projectile.getDamage());
+		
+		if(this.getHealth() <= 0){
+			SceneManager.getCurrentScene().removeEntity(this);
 		}
 		
 	}
