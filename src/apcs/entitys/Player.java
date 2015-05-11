@@ -108,7 +108,15 @@ public class Player extends Sprite implements Updateable, Input {
 			} else if (e.getKeyCode() == 's') {
 				down = true;
 			} else if (e.getKeyCode() == ' ') {
-
+			    if (this.getTexture() == leftTexture) {
+                    SceneManager.getCurrentScene().addEntity(
+                            new Arrow(xLoc - this.width / 2,
+                                    (yLoc + this.height / 2) - 16, 4));
+                } else if (this.getTexture() == rightTexture) {
+                    SceneManager.getCurrentScene().addEntity(
+                            new Arrow(xLoc + this.width,
+                                    (yLoc + this.height / 2) - 16, 2));
+                }
 			}
 		} else if (e.getAction() == ActionType.KEYBOARD_UP) {
 
