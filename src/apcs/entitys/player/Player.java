@@ -150,6 +150,8 @@ public class Player extends Sprite implements Updateable, Input {
 					((ActionItem) inventory.getHandItem()).onAction(this);
 				}
 				
+			}else if(e.getKeyCode() == '2'){
+				
 			}
 		}
 

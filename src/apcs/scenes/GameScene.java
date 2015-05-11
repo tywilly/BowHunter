@@ -1,5 +1,6 @@
 package apcs.scenes;
 
+import apcs.entitys.mob.Human;
 import apcs.entitys.player.Player;
 import apcs.entitys.world.World;
 
@@ -25,8 +26,17 @@ public class GameScene extends Scene {
 		world.addToScene();
 		
 		this.addEntity(spriteTest);
+		
+		
+		this.addEntity(new Human(world.getWidth() / 2, world.getHeight() / 3));
+		
+		
 		this.addEntity(new DebugInfo());
 
 	}
 
+	public Player getPlayer(){
+		return spriteTest;
+	}
+	
 }

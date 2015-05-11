@@ -5,6 +5,9 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import apcs.entitys.mob.Mob;
+import apcs.entitys.projectile.Projectile;
+
 import com.tywilly.WillyEngine.entity.Entity;
 import com.tywilly.WillyEngine.scene.SceneManager;
 
@@ -80,6 +83,15 @@ public class World {
 		for(int i=0;i<world.size();i++){
 			world.get(i).setX((world.get(i).getX() + x));
 			world.get(i).setY((world.get(i).getY() + y));
+		}
+		
+		for(int i=0;i<SceneManager.getCurrentScene().ents.size();i++){
+			Entity ent = SceneManager.getCurrentScene().ents.get(i);
+			
+			if(ent instanceof Mob || ent instanceof Projectile){
+				ent.setX(ent.getX() + x);
+				ent.setY(ent.getY() + y);
+			}
 		}
 		
 	}
