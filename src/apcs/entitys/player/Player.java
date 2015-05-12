@@ -152,12 +152,39 @@ public class Player extends Sprite implements Updateable, Input, Damageable {
 
 				if (inventory.getHandItem() instanceof Weapon) {
 
-					float xDir = Math.abs(e.getMouseX()
-							- (this.xLoc + this.width / 2));
+					float xDir = e.getMouseX() - (this.xLoc + this.width / 2);
 					float yDir = e.getMouseY() - (this.yLoc + this.height / 2);
 
 					double angle = Math.atan2(yDir, xDir);
-
+//					System.out.println(xDir + " " + yDir);
+//					if(xDir>yDir)
+//					{
+//					    if(xDir<0&&yDir<0)
+//					    {
+//	                        yDir=-yDir/xDir;
+//	                        xDir=-1;					        
+//					    }
+//					    else
+//					    {
+//	                        yDir=yDir/xDir;
+//	                        xDir=1;					        
+//					    }
+//					}
+//					else
+//					{
+//	                       if(xDir<0&&yDir<0)
+//	                        {
+//	                           xDir=-xDir/yDir;
+//	                           yDir=-1;                           
+//	                        }
+//	                        else
+//	                        {
+//	                            xDir=xDir/yDir;
+//	                            yDir=1;                        
+//	                        }
+//					}
+//					System.out.println(xDir + " " + yDir);
+					
 					if (e.getMouseX() > this.getX()) {
 						xDir = 1;
 					} else if (e.getMouseX() < this.getX()) {
@@ -165,6 +192,7 @@ public class Player extends Sprite implements Updateable, Input, Damageable {
 					}
 
 					yDir = ((float) (xDir * Math.atan(angle)));
+					System.out.println(xDir + " " + yDir);
 
 					if (xDir < 0) {
 						yDir = -yDir;
