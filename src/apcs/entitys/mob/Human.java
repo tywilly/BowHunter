@@ -31,17 +31,17 @@ public class Human extends Mob{
 		
 		Player p = ((GameScene) SceneManager.getCurrentScene()).getPlayer();
 		
-//		if(this.getX() > p.getX()){
-//			xLoc -= (0.25 * mili);
-//		}else if(this.getX() < p.getX()){
-//			xLoc += (0.25 * mili);
-//		}
-//		
-//		if(this.getY() > p.getY()){
-//			yLoc -= 0.25 * mili;
-//		}else if(this.getY() < p.getY()){
-//			yLoc += (0.25 * mili);
-//		}
+		if (this.getX() > p.getX()) {
+			xLoc -= (0.25 * mili);
+		} else if (this.getX() < p.getX()) {
+			xLoc += (0.25 * mili);
+		}
+
+		if (this.getY() > p.getY()) {
+			yLoc -= 0.25 * mili;
+		} else if (this.getY() < p.getY()) {
+			yLoc += (0.25 * mili);
+		}
 		
 	}
 
@@ -54,6 +54,8 @@ public class Human extends Mob{
 		if(this.getHealth() <= 0){
 			SceneManager.getCurrentScene().removeEntity(this);
 		}
+		
+		System.out.println(health);
 		
 	}
 

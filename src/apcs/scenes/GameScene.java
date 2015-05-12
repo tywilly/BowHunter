@@ -28,8 +28,9 @@ public class GameScene extends Scene {
 		this.addEntity(spriteTest);
 		
 		
-		this.addEntity(new Human(world.getWidth() / 2, world.getHeight() / 3));
-		
+		for(int i=0;i<1;i++){
+			this.addEntity(new Human((world.getWidth() / 2) + i * 64, world.getHeight() / 3));
+		}
 		
 		this.addEntity(new DebugInfo());
 
