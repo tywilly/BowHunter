@@ -10,68 +10,80 @@ import com.tywilly.WillyEngine.scene.SceneManager;
 import com.tywilly.WillyEngine.texture.Texture;
 import com.tywilly.WillyEngine.update.Updateable;
 
-public class Projectile extends Sprite implements Updateable {
+public class Projectile extends Sprite implements Updateable
+{
 
-	float xDir = 0;
-	float yDir = 0;
+    float xDir = 0;
 
-	int physTick = 0;
+    float yDir = 0;
 
-	int damage = 0;
+    int physTick = 0;
 
-	Damageable shooter;
+    int damage = 0;
 
-	public Projectile(int x, int y, int height, int width, float xDir,
-			float yDir, Texture texture, int damage, Damageable shooter) {
-		super(x, y, height, width, texture);
-		// TODO Auto-generated constructor stub
-		this.xDir = xDir;
-		this.yDir = yDir;
-		this.damage = damage;
-		this.shooter = shooter;
-	}
+    Damageable shooter;
 
-	@Override
-	public void update(long mili) {
-		// TODO Auto-generated method stub
+    public Projectile(int x, int y, int height, int width, float xDir,
+            float yDir, Texture texture, int damage, Damageable shooter)
+    {
+        super(x, y, height, width, texture);
+        // TODO Auto-generated constructor stub
+        this.xDir = xDir;
+        this.yDir = yDir;
+        this.damage = damage;
+        this.shooter = shooter;
+    }
 
-		if (xLoc >= Engine.display.getWidth() || xLoc <= 0) {
-			SceneManager.getCurrentScene().removeEntity(this);
-		}
+    @Override
+    public void update(long mili)
+    {
+        // TODO Auto-generated method stub
 
-		xLoc += xDir * mili;
-		yLoc += yDir * mili;
+        if (xLoc >= Engine.display.getWidth() || xLoc <= 0)
+        {
+            SceneManager.getCurrentScene().removeEntity(this);
+        }
 
-		if (physTick >= 4) {
+        xLoc += xDir * mili;
+        yLoc += yDir * mili;
 
-			physTick = -1;
+        if (physTick >= 4)
+        {
 
-			for (int i = 0; i < SceneManager.getCurrentScene().ents.size(); i++) {
+            physTick = -1;
 
-				Entity ent = SceneManager.getCurrentScene().ents.get(i);
+            for (int i = 0; i < SceneManager.getCurrentScene().ents.size(); i++)
+            {
 
-				if (ent instanceof Damageable || ent instanceof Player) {
-					if ((Damageable) ent != shooter) {
-						if (this.getX() + this.width >= ent.getX()) {
-							if (this.getY() + this.height >= ent.getY()) {
-								SceneManager.getCurrentScene().removeEntity(
-										this);
-								((Damageable) ent).onDamage(shooter, this);
-							}
-						}
-					}
-				}
+                Entity ent = SceneManager.getCurrentScene().ents.get(i);
 
-			}
+                if (ent instanceof Damageable || ent instanceof Player)
+                {
+                    if ((Damageable) ent != shooter)
+                    {
+                        if (this.getX() + this.width >= ent.getX())
+                        {
+                            if (this.getY() + this.height >= ent.getY())
+                            {
+                                SceneManager.getCurrentScene().removeEntity(
+                                        this);
+                                ((Damageable) ent).onDamage(shooter, this);
+                            }
+                        }
+                    }
+                }
 
-		}
+            }
 
-		physTick++;
+        }
 
-	}
+        physTick++;
 
-	public int getDamage() {
-		return damage;
-	}
+    }
+
+    public int getDamage()
+    {
+        return damage;
+    }
 
 }

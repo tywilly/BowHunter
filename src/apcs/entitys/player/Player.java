@@ -21,103 +21,119 @@ import com.tywilly.WillyEngine.input.InputAction.ActionType;
 import com.tywilly.WillyEngine.texture.Texture;
 import com.tywilly.WillyEngine.update.Updateable;
 
-public class Player extends Sprite implements Updateable, Input, Damageable {
+public class Player extends Sprite implements Updateable, Input, Damageable
+{
 
-	String playerName = "Player 1";
+    String playerName = "Player 1";
 
-	Texture rightTexture;
+    Texture rightTexture;
 
-	Texture leftTexture = new Texture("assets/characters/obama_sprite_left.png");
+    Texture leftTexture = new Texture("assets/characters/obama_sprite_left.png");
 
-	boolean right = false;
+    boolean right = false;
 
-	boolean left = false;
+    boolean left = false;
 
-	boolean up = false;
+    boolean up = false;
 
-	boolean down = false;
-	
-	int health = 100;
+    boolean down = false;
 
-	Inventory inventory = new Inventory();
+    int health = 100;
 
-	/*
-	 * Skills
-	 */
+    Inventory inventory = new Inventory();
 
-	AttackSkill atackSkill = new AttackSkill();
+    /*
+     * Skills
+     */
 
-	DefenseSkill defenseSkill = new DefenseSkill();
+    AttackSkill atackSkill = new AttackSkill();
 
-	public Player(int x, int y) {
-		super(x, y, 64, 64, new Texture(
-				"assets/characters/obama_sprite_right.png"));
-		this.getTexture().loadIntoMemery();
-		rightTexture = this.getTexture();
-		leftTexture.loadIntoMemery();
+    DefenseSkill defenseSkill = new DefenseSkill();
 
-		inventory.setHandItem(new Bow());
+    public Player(int x, int y)
+    {
+        super(x, y, 64, 64, new Texture(
+                "assets/characters/obama_sprite_right.png"));
+        this.getTexture().loadIntoMemery();
+        rightTexture = this.getTexture();
+        leftTexture.loadIntoMemery();
 
-	}
+        inventory.setHandItem(new Bow());
 
-	@Override
-	public void paint(Graphics g) {
-		// TODO Auto-generated method stub
-		super.paint(g);
+    }
 
-		g.setColor(Color.BLACK);
-		g.setFont(new Font("Arial", Font.BOLD, 20));
-		g.drawString(playerName, xLoc - 2, yLoc - 10);
+    @Override
+    public void paint(Graphics g)
+    {
+        // TODO Auto-generated method stub
+        super.paint(g);
 
-	}
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("Arial", Font.BOLD, 20));
+        g.drawString(playerName, xLoc - 2, yLoc - 10);
 
-	@Override
-	public void update(long mili) {
-		// TODO Auto-generated method stub
+    }
 
-		if (up) {
+    @Override
+    public void update(long mili)
+    {
+        // TODO Auto-generated method stub
 
-			if (yLoc + height / 2 <= Engine.display.getHeight() / 2
-					&& GameScene.world.getYLocation() <= 0) {
-				GameScene.world.moveWorld(0, (int) (0.5 * mili));
-			} else if (yLoc >= 0) {
-				yLoc -= 0.5 * mili;
-			}
+        if (up)
+        {
 
-		} else if (down) {
+            if (yLoc + height / 2 <= Engine.display.getHeight() / 2
+                    && GameScene.world.getYLocation() <= 0)
+            {
+                GameScene.world.moveWorld(0, (int) (0.5 * mili));
+            } else if (yLoc >= 0)
+            {
+                yLoc -= 0.5 * mili;
+            }
 
-			if (yLoc + height / 2 >= Engine.display.getHeight() / 2
-					&& -GameScene.world.getYLocation() <= GameScene.world
-							.getHeight() - Engine.display.getHeight()) {
-				GameScene.world.moveWorld(0, -(int) (0.5 * mili));
-			} else if (yLoc + height <= Engine.display.getHeight()) {
-				yLoc += 0.5 * mili;
-			}
+        } else if (down)
+        {
 
-		}
+            if (yLoc + height / 2 >= Engine.display.getHeight() / 2
+                    && -GameScene.world.getYLocation() <= GameScene.world
+                            .getHeight() - Engine.display.getHeight())
+            {
+                GameScene.world.moveWorld(0, -(int) (0.5 * mili));
+            } else if (yLoc + height <= Engine.display.getHeight())
+            {
+                yLoc += 0.5 * mili;
+            }
 
-		if (right) {
+        }
 
-			if (xLoc + width / 2 >= Engine.display.getWidth() / 2
-					&& -GameScene.world.getXLocation() <= GameScene.world
-							.getWidth() - Engine.display.getWidth()) {
-				GameScene.world.moveWorld((int) -(0.5 * mili), 0);
-			} else if (xLoc + width <= Engine.display.getWidth()) {
-				xLoc += 0.5 * mili;
-			}
-		} else if (left) {
+        if (right)
+        {
 
-			if (xLoc + width / 2 <= Engine.display.getWidth() / 2
-					&& GameScene.world.getXLocation() <= 0) {
-				GameScene.world.moveWorld((int) (0.5 * mili), 0);
-			} else if (xLoc >= 0) {
-				xLoc -= 0.5 * mili;
-			}
-		}
+            if (xLoc + width / 2 >= Engine.display.getWidth() / 2
+                    && -GameScene.world.getXLocation() <= GameScene.world
+                            .getWidth() - Engine.display.getWidth())
+            {
+                GameScene.world.moveWorld((int) -(0.5 * mili), 0);
+            } else if (xLoc + width <= Engine.display.getWidth())
+            {
+                xLoc += 0.5 * mili;
+            }
+        } else if (left)
+        {
 
-	}
+            if (xLoc + width / 2 <= Engine.display.getWidth() / 2
+                    && GameScene.world.getXLocation() <= 0)
+            {
+                GameScene.world.moveWorld((int) (0.5 * mili), 0);
+            } else if (xLoc >= 0)
+            {
+                xLoc -= 0.5 * mili;
+            }
+        }
 
-	@Override
+    }
+
+    @Override
 	public void onInput(InputAction e) {
 		// TODO Auto-generated method stub
 
@@ -133,7 +149,7 @@ public class Player extends Sprite implements Updateable, Input, Damageable {
 			} else if (e.getKeyCode() == 's') {
 				down = true;
 			} else if (e.getKeyCode() == ' ') {
-				// shootProjectile(1, 0);
+				
 			}
 		} else if (e.getAction() == ActionType.KEYBOARD_UP) {
 
@@ -152,24 +168,31 @@ public class Player extends Sprite implements Updateable, Input, Damageable {
 
 				if (inventory.getHandItem() instanceof Weapon) {
 
-					float xDir = Math.abs(e.getMouseX()
+					float xDir = (e.getMouseX()
 							- (this.xLoc + this.width / 2));
 					float yDir = e.getMouseY() - (this.yLoc + this.height / 2);
-
+//
 					double angle = Math.atan2(yDir, xDir);
+//
 
-					if (e.getMouseX() > this.getX()) {
-						xDir = 1;
-					} else if (e.getMouseX() < this.getX()) {
-						xDir = -1;
-					}
+//
+//					yDir = ((float) (xDir * Math.atan(angle)));
+//
+//					if (xDir < 0) {
+//						yDir = -yDir;
+//					}
+				    
 
-					yDir = ((float) (xDir * Math.atan(angle)));
+				    float mag = 1.0f;
+				    
+				    yDir = (float) (mag * Math.sin(angle));
 
-					if (xDir < 0) {
-						yDir = -yDir;
-					}
-
+				    xDir = (float) Math.sqrt(Math.pow(mag, 2) - Math.pow(yDir, 2));
+				    
+                    if (e.getMouseX() < this.getX()) {
+                        xDir = -xDir;
+                    }
+				    
 					((Weapon) inventory.getHandItem()).onAction(this, xDir,
 							yDir);
 				} else if (inventory.getHandItem() instanceof ActionItem) {
@@ -183,17 +206,19 @@ public class Player extends Sprite implements Updateable, Input, Damageable {
 
 	}
 
-	public Inventory getInventory() {
-		return inventory;
-	}
+    public Inventory getInventory()
+    {
+        return inventory;
+    }
 
-	@Override
-	public void onDamage(Damageable killer, Projectile projectile) {
-		// TODO Auto-generated method stub
-		
-		this.health -= projectile.getDamage();
-		System.out.println("DAMAGE!" + this.health);
-		
-	}
+    @Override
+    public void onDamage(Damageable killer, Projectile projectile)
+    {
+        // TODO Auto-generated method stub
+
+        this.health -= projectile.getDamage();
+        System.out.println("DAMAGE!" + this.health);
+
+    }
 
 }
