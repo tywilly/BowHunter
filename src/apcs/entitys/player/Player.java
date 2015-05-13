@@ -134,77 +134,83 @@ public class Player extends Sprite implements Updateable, Input, Damageable
     }
 
     @Override
-	public void onInput(InputAction e) {
-		// TODO Auto-generated method stub
+    public void onInput(InputAction e)
+    {
+        // TODO Auto-generated method stub
 
-		if (e.getAction() == ActionType.KEYBOARD_DOWN) {
-			if (e.getKeyCode() == 'd') {
-				this.setTexure(rightTexture);
-				right = true;
-			} else if (e.getKeyCode() == 'a') {
-				this.setTexure(leftTexture);
-				left = true;
-			} else if (e.getKeyCode() == 'w') {
-				up = true;
-			} else if (e.getKeyCode() == 's') {
-				down = true;
-			} else if (e.getKeyCode() == ' ') {
-				
-			}
-		} else if (e.getAction() == ActionType.KEYBOARD_UP) {
+        if (e.getAction() == ActionType.KEYBOARD_DOWN)
+        {
+            if (e.getKeyCode() == 'd')
+            {
+                this.setTexure(rightTexture);
+                right = true;
+            } else if (e.getKeyCode() == 'a')
+            {
+                this.setTexure(leftTexture);
+                left = true;
+            } else if (e.getKeyCode() == 'w')
+            {
+                up = true;
+            } else if (e.getKeyCode() == 's')
+            {
+                down = true;
+            } else if (e.getKeyCode() == ' ')
+            {
 
-			if (e.getKeyCode() == 'd') {
-				right = false;
-			} else if (e.getKeyCode() == 'a') {
-				left = false;
-			} else if (e.getKeyCode() == 'w') {
-				up = false;
-			} else if (e.getKeyCode() == 's') {
-				down = false;
-			}
+            }
+        } else if (e.getAction() == ActionType.KEYBOARD_UP)
+        {
 
-		} else if (e.getAction() == ActionType.MOUSE_DOWN) {
-			if (e.getKeyCode() == '1') {
+            if (e.getKeyCode() == 'd')
+            {
+                right = false;
+            } else if (e.getKeyCode() == 'a')
+            {
+                left = false;
+            } else if (e.getKeyCode() == 'w')
+            {
+                up = false;
+            } else if (e.getKeyCode() == 's')
+            {
+                down = false;
+            }
 
-				if (inventory.getHandItem() instanceof Weapon) {
+        } else if (e.getAction() == ActionType.MOUSE_DOWN)
+        {
+            if (e.getKeyCode() == '1')
+            {
 
-					float xDir = (e.getMouseX()
-							- (this.xLoc + this.width / 2));
-					float yDir = e.getMouseY() - (this.yLoc + this.height / 2);
-//
-					double angle = Math.atan2(yDir, xDir);
-//
+                if (inventory.getHandItem() instanceof Weapon)
+                {
+                    float xDir = (e.getMouseX() - (this.xLoc + this.width / 2));
+                    float yDir = e.getMouseY() - (this.yLoc + this.height / 2);
+                    double angle = Math.atan2(yDir, xDir);
+                    float mag = 1.0f;
 
-//
-//					yDir = ((float) (xDir * Math.atan(angle)));
-//
-//					if (xDir < 0) {
-//						yDir = -yDir;
-//					}
-				    
+                    yDir = (float) (mag * Math.sin(angle));
 
-				    float mag = 1.0f;
-				    
-				    yDir = (float) (mag * Math.sin(angle));
+                    xDir = (float) Math.sqrt(Math.pow(mag, 2)
+                            - Math.pow(yDir, 2));
 
-				    xDir = (float) Math.sqrt(Math.pow(mag, 2) - Math.pow(yDir, 2));
-				    
-                    if (e.getMouseX() < this.getX()) {
+                    if (e.getMouseX() < this.getX())
+                    {
                         xDir = -xDir;
                     }
-				    
-					((Weapon) inventory.getHandItem()).onAction(this, xDir,
-							yDir);
-				} else if (inventory.getHandItem() instanceof ActionItem) {
-					((ActionItem) inventory.getHandItem()).onAction(this);
-				}
 
-			} else if (e.getKeyCode() == '2') {
+                    ((Weapon) inventory.getHandItem()).onAction(this, xDir,
+                            yDir);
+                } else if (inventory.getHandItem() instanceof ActionItem)
+                {
+                    ((ActionItem) inventory.getHandItem()).onAction(this);
+                }
 
-			}
-		}
+            } else if (e.getKeyCode() == '2')
+            {
 
-	}
+            }
+        }
+
+    }
 
     public Inventory getInventory()
     {
