@@ -183,13 +183,15 @@ public class Player extends Sprite implements Updateable, Input, Damageable
                 if (inventory.getHandItem() instanceof Weapon)
                 {
 
-                    float xDir = e.getMouseX() - (this.xLoc + this.width / 2);
-                    float yDir = e.getMouseY() - (this.yLoc + this.height / 2);
+
+					float xDir = e.getMouseX() - (this.xLoc + this.width / 2);
+					float yDir = e.getMouseY() - (this.yLoc + this.height / 2);
 
                     double angle = Math.atan2(yDir, xDir);
                     float mag = 1.0f;
 
                     yDir = (float) (mag * Math.sin(angle));
+					
 
                     xDir = (float) Math.sqrt(Math.pow(mag, 2)
                             - Math.pow(yDir, 2));
