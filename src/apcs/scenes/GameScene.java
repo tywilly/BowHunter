@@ -1,9 +1,11 @@
 package apcs.scenes;
 
-import apcs.entitys.Player;
+import apcs.entitys.mob.Human;
+import apcs.entitys.player.Player;
 import apcs.entitys.world.World;
 
 import com.tywilly.WillyEngine.Engine;
+import com.tywilly.WillyEngine.entity.text.DebugInfo;
 import com.tywilly.WillyEngine.scene.Scene;
 
 public class GameScene extends Scene {
@@ -24,7 +26,18 @@ public class GameScene extends Scene {
 		world.addToScene();
 		
 		this.addEntity(spriteTest);
+		
+		
+//		for(int i=0;i<1;i++){
+//			this.addEntity(new Human((world.getWidth() / 2) + i * 64, world.getHeight() / 3));
+//		}
+		
+		this.addEntity(new DebugInfo());
 
 	}
 
+	public Player getPlayer(){
+		return spriteTest;
+	}
+	
 }
