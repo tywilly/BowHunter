@@ -37,6 +37,10 @@ public class Player extends Sprite implements Updateable, Input, Damageable
     boolean up = false;
 
     boolean down = false;
+    
+    long up1 =0;
+    
+    long down1 = 0;
 
     int health = 100;
 
@@ -58,7 +62,7 @@ public class Player extends Sprite implements Updateable, Input, Damageable
         rightTexture = this.getTexture();
         leftTexture.loadIntoMemery();
 
-        inventory.setHandItem(new Bow());
+        inventory.setHandItem(new Bow(1.0f));
 
     }
 
@@ -175,23 +179,35 @@ public class Player extends Sprite implements Updateable, Input, Damageable
                 down = false;
             }
 
-        } else if (e.getAction() == ActionType.MOUSE_DOWN)
+        } 
+        else if (e.getAction() == ActionType.MOUSE_DOWN)
         {
+            
+            down1 = System.currentTimeMillis();               
+
+        }else if (e.getAction() == ActionType.MOUSE_UP)
+        {
+            up1 = System.currentTimeMillis();
+            System.out.println(up1-down1);
+
             if (e.getKeyCode() == '1')
             {
 
                 if (inventory.getHandItem() instanceof Weapon)
                 {
 
+                    Weapon wep = (Weapon) inventory.getHandItem();
 
-					float xDir = e.getMouseX() - (this.xLoc + this.width / 2);
-					float yDir = e.getMouseY() - (this.yLoc + this.height / 2);
+                    float xDir = e.getMouseX() - (this.xLoc + this.width / 2);
+                    float yDir = e.getMouseY() - (this.yLoc + this.height / 2);
 
                     double angle = Math.atan2(yDir, xDir);
-                    float mag = 1.0f;
+                    float mag = ((up1-down1)/100) + 1.0f;
+                    if(up1-down1>1000){
+                        mag=1.0f;
+                    }
 
                     yDir = (float) (mag * Math.sin(angle));
-					
 
                     xDir = (float) Math.sqrt(Math.pow(mag, 2)
                             - Math.pow(yDir, 2));
@@ -201,8 +217,7 @@ public class Player extends Sprite implements Updateable, Input, Damageable
                         xDir = -xDir;
                     }
 
-                    ((Weapon) inventory.getHandItem()).onAction(this, xDir,
-                            yDir);
+                    wep.onAction(this, xDir, yDir);
                 } else if (inventory.getHandItem() instanceof ActionItem)
                 {
                     ((ActionItem) inventory.getHandItem()).onAction(this);
