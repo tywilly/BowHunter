@@ -7,21 +7,14 @@ import com.tywilly.WillyEngine.texture.Texture;
 public class Arrow extends Projectile
 {
 
-    static Texture leftTexture = new Texture(
-            "assets/weapons/bullets/new/arrow_left.png");
-
     static Texture rightTexture = new Texture(
             "assets/weapons/bullets/new/arrow_right.png");
 
-    public Arrow(int x, int y, float xdir, float ydir, Damageable shooter)
+    public Arrow(int x, int y, float xdir, float ydir, int angle, Damageable shooter)
     {
         super(x, y, 64, 64, xdir, ydir, null, 10, shooter);
         // TODO Auto-generated constructor stub
-
-        if (!leftTexture.isLoaded())
-        {
-            leftTexture.loadIntoMemery();
-        }
+        
         if (!rightTexture.isLoaded())
         {
             rightTexture.loadIntoMemery();
@@ -36,6 +29,7 @@ public class Arrow extends Projectile
 //        }
 
         this.setTexure(rightTexture);
+        this.setRotation(angle);
         
     }
 
