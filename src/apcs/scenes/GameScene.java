@@ -1,6 +1,5 @@
 package apcs.scenes;
 
-import apcs.entitys.mob.Human;
 import apcs.entitys.player.Player;
 import apcs.entitys.world.World;
 

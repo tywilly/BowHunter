@@ -202,7 +202,7 @@ public class Player extends Sprite implements Updateable, Input, Damageable
                     }
 
                     ((Weapon) inventory.getHandItem()).onAction(this, xDir,
-                            yDir);
+                            yDir, (int)Math.toDegrees(angle));
                 } else if (inventory.getHandItem() instanceof ActionItem)
                 {
                     ((ActionItem) inventory.getHandItem()).onAction(this);
