@@ -19,6 +19,7 @@ import com.tywilly.WillyEngine.input.Input;
 import com.tywilly.WillyEngine.input.InputAction;
 import com.tywilly.WillyEngine.input.InputAction.ActionType;
 import com.tywilly.WillyEngine.texture.Texture;
+import com.tywilly.WillyEngine.texture.TextureManager;
 import com.tywilly.WillyEngine.update.Updateable;
 
 public class Player extends Sprite implements Updateable, Input, Damageable
@@ -28,7 +29,7 @@ public class Player extends Sprite implements Updateable, Input, Damageable
 
     Texture rightTexture;
 
-    Texture leftTexture = new Texture("assets/characters/sarge_left.png");
+    Texture leftTexture = TextureManager.createTexture("assets/characters/sarge_left.png");
 
     boolean right = false;
 
@@ -52,7 +53,7 @@ public class Player extends Sprite implements Updateable, Input, Damageable
 
     public Player(int x, int y)
     {
-        super(x, y, 64, 64, new Texture(
+        super(x, y, 64, 64, TextureManager.createTexture(
                 "assets/characters/sarge_right.png"));
         this.getTexture().loadIntoMemery();
         rightTexture = this.getTexture();
@@ -71,7 +72,7 @@ public class Player extends Sprite implements Updateable, Input, Damageable
         g.setColor(Color.BLACK);
         g.setFont(new Font("Arial", Font.BOLD, 20));
         g.drawString(playerName, xLoc - 2, yLoc - 10);
-
+        
     }
 
     @Override
