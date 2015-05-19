@@ -37,6 +37,10 @@ public class Player extends Sprite implements Updateable, Input, Damageable
     boolean up = false;
 
     boolean down = false;
+    
+    long up1 = 0;
+    
+    long down1 = 0;
 
     int health = 100;
 
@@ -70,7 +74,7 @@ public class Player extends Sprite implements Updateable, Input, Damageable
 
         g.setColor(Color.BLACK);
         g.setFont(new Font("Arial", Font.BOLD, 20));
-        g.drawString(playerName, xLoc - 2, yLoc - 10);
+        g.drawString(playerName, (int)xLoc - 2, (int)yLoc - 10);
 
     }
 
@@ -154,9 +158,9 @@ public class Player extends Sprite implements Updateable, Input, Damageable
             } else if (e.getKeyCode() == 's')
             {
                 down = true;
-            } else if (e.getKeyCode() == ' ')
+            } else
             {
-
+                System.out.println(e.getKeyCode());
             }
         } else if (e.getAction() == ActionType.KEYBOARD_UP)
         {
@@ -175,20 +179,34 @@ public class Player extends Sprite implements Updateable, Input, Damageable
                 down = false;
             }
 
-        } else if (e.getAction() == ActionType.MOUSE_DOWN)
+            
+        } 
+        else if (e.getAction() == ActionType.MOUSE_DOWN)
+        {
+            
+            down1 = System.currentTimeMillis();               
+
+        }else if (e.getAction() == ActionType.MOUSE_UP)
         {
             if (e.getKeyCode() == '1')
             {
 
                 if (inventory.getHandItem() instanceof Weapon)
                 {
-
-
+                    up1 = System.currentTimeMillis();
+                    
 					float xDir = e.getMouseX() - (this.xLoc + this.width / 2);
 					float yDir = e.getMouseY() - (this.yLoc + this.height / 2);
 
                     double angle = Math.atan2(yDir, xDir);
-                    float mag = 1.0f;
+                    float mag = ((up1-down1)/100);
+                    if(up1-down1<100)
+                    {
+                        mag=1.0f;
+                    }
+                    if(up1-down1>300){
+                        mag=3.0f;
+                    }
 
                     yDir = (float) (mag * Math.sin(angle));
 					

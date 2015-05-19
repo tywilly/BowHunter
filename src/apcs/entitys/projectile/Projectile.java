@@ -23,7 +23,7 @@ public class Projectile extends Sprite implements Updateable
 
     Damageable shooter;
 
-    public Projectile(int x, int y, int height, int width, float xDir,
+    public Projectile(float x, float y, int height, int width, float xDir,
             float yDir, Texture texture, int damage, Damageable shooter)
     {
         super(x, y, height, width, texture);
