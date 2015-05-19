@@ -71,7 +71,7 @@ public class Player extends Sprite implements Updateable, Input, Damageable
 
         g.setColor(Color.BLACK);
         g.setFont(new Font("Arial", Font.BOLD, 20));
-        g.drawString(playerName, xLoc - 2, yLoc - 10);
+        g.drawString(playerName, (int)xLoc - 2, (int)yLoc - 10);
         
     }
 
