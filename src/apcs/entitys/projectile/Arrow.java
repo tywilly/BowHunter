@@ -10,7 +10,7 @@ public class Arrow extends Projectile
     static Texture rightTexture = new Texture(
             "assets/weapons/bullets/new/arrow_right.png");
 
-    public Arrow(int x, int y, float xdir, float ydir, int angle, Damageable shooter)
+    public Arrow(float x, float y, float xdir, float ydir, int angle, Damageable shooter)
     {
         super(x, y, 64, 64, xdir, ydir, null, 10, shooter);
         // TODO Auto-generated constructor stub
