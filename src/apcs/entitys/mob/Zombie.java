@@ -27,12 +27,12 @@ public class Zombie extends Mob {
 
 		Random rand = new Random();
 		
-		int xOne = rand.nextInt(world.getXLocation() + 1);
+		int xOne = rand.nextInt(Math.abs(world.getXLocation()));
 		int xTwo = rand.nextInt(world.getWidth()
 				- Engine.display.getWidth())
 				+ Engine.display.getWidth();
 
-		int yOne = rand.nextInt(world.getYLocation() + 1);
+		int yOne = rand.nextInt(Math.abs(world.getYLocation()));
 		int yTwo = rand.nextInt(world.getHeight()
 				- Engine.display.getHeight())
 				+ Engine.display.getHeight();

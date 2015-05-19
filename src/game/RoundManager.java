@@ -43,17 +43,21 @@ public class RoundManager
     
     public void startRound(){
     	
-    	System.out.println("New Round! " + roundNumber);
-    	
-    	isRunning =true;
-    	
-    	if(spawnThread == null){
-    		spawnThread = new SpawnThread();
+    	if(!isRunning){
+    		System.out.println("New Round! " + roundNumber);
+        	
+        	isRunning =true;
+        	
+        	if(spawnThread == null){
+        		spawnThread = new SpawnThread();
+        	}
+        	
+        	numLeft = (int)1.5 * roundNumber + 5;
+        	
+        	System.out.println(numLeft);
+        	
+        	spawnThread.start();
     	}
-    	
-    	numLeft = (int)1 * roundNumber + 5;
-    	
-    	spawnThread.start();
     	
     }
     
