@@ -1,5 +1,6 @@
 package apcs.scenes;
 
+import game.RoundManager;
 import apcs.entitys.mob.Zombie;
 import apcs.entitys.player.Player;
 import apcs.entitys.world.World;
@@ -14,11 +15,15 @@ public class GameScene extends Scene {
 			Engine.display.getHeight() / 4);
 	
 	public static World world;
+	
+	public static RoundManager roundManager;
 
 	@Override
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		
+	    roundManager = new RoundManager();
+	    
 		world = new World();
 		
 		world.loadWorld("assets/world/default.world");
@@ -27,10 +32,7 @@ public class GameScene extends Scene {
 		
 		this.addEntity(player);
 		
-		
-		for(int i=0;i<10;i++){
-			this.addEntity(new Zombie());
-		}
+		this.roundManager.spawnZombies(50);
 		
 		this.addEntity(new DebugInfo());
 

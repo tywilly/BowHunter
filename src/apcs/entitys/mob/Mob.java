@@ -10,6 +10,8 @@ public abstract class Mob extends Sprite implements Updateable, Damageable{
 	
 	int health = 100;
 	
+	protected boolean isMoving = false;
+	
 	public Mob(int x, int y, int height, int width, Texture texture) {
 		super(x, y, height, width, texture);
 		// TODO Auto-generated constructor stub
@@ -21,6 +23,10 @@ public abstract class Mob extends Sprite implements Updateable, Damageable{
 	
 	public void setHealth(int health){
 		this.health = health;
+	}
+	
+	public boolean isMoving(){
+	    return isMoving;
 	}
 	
 }

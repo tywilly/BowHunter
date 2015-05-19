@@ -13,6 +13,8 @@ import apcs.scenes.GameScene;
 
 public class Zombie extends Mob {
 
+    public boolean isMoving = false;
+    
 	public Zombie() {
 		super(0, 0, 64, 64, TextureManager
 				.createTexture("assets/characters/obama_sprite_left.png"));
@@ -37,6 +39,8 @@ public class Zombie extends Mob {
 
 		if(xOne <= 128){
 			this.setX(xTwo);
+		}else if(xTwo >= world.getWidth() - 128){
+		    this.setX(xOne);
 		}else{
 			if(rand.nextInt(2) == 1){
 				this.setX(xOne);
@@ -47,6 +51,8 @@ public class Zombie extends Mob {
 		
 		if(yOne <= 128){
 			this.setY(yTwo);
+		}else if(yTwo >= world.getHeight() - 128){
+		    this.setY(yOne);
 		}else{
 			if(rand.nextInt(2) == 1){
 				this.setY(yOne);
@@ -61,7 +67,17 @@ public class Zombie extends Mob {
 	public void update(long mili) {
 		// TODO Auto-generated method stub
 		
-		
+	    if(this.xLoc > GameScene.player.getX()){
+	        this.xLoc -= (.1) * mili;
+	    }else{
+	        this.xLoc += (.1) * mili;
+	    }
+	    
+	    if(this.yLoc > GameScene.player.getY()){
+            this.yLoc -= (.1) * mili;
+        }else{
+            this.yLoc += (.1) * mili;
+        }
 		
 	}
 
