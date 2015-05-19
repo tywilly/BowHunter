@@ -19,6 +19,7 @@ import com.tywilly.WillyEngine.input.Input;
 import com.tywilly.WillyEngine.input.InputAction;
 import com.tywilly.WillyEngine.input.InputAction.ActionType;
 import com.tywilly.WillyEngine.texture.Texture;
+import com.tywilly.WillyEngine.texture.TextureManager;
 import com.tywilly.WillyEngine.update.Updateable;
 
 public class Player extends Sprite implements Updateable, Input, Damageable
