@@ -68,15 +68,15 @@ public class Zombie extends Mob {
 		// TODO Auto-generated method stub
 		
 	    if(this.xLoc > GameScene.player.getX()){
-	        this.xLoc -= (.1) * mili;
+	        this.xLoc -= (.25) * mili;
 	    }else{
-	        this.xLoc += (.1) * mili;
+	        this.xLoc += (.25) * mili;
 	    }
 	    
 	    if(this.yLoc > GameScene.player.getY()){
-            this.yLoc -= (.1) * mili;
+            this.yLoc -= (.25) * mili;
         }else{
-            this.yLoc += (.1) * mili;
+            this.yLoc += (.25) * mili;
         }
 		
 	}
@@ -89,6 +89,7 @@ public class Zombie extends Mob {
 		
 		if (this.getHealth() <= 0){
 			SceneManager.getCurrentScene().removeEntity(this);
+			GameScene.roundManager.registerKill();
 		}
 		
 	}

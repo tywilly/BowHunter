@@ -157,7 +157,7 @@ public class Player extends Sprite implements Updateable, Input, Damageable
                 down = true;
             } else if (e.getKeyCode() == ' ')
             {
-
+            	GameScene.roundManager.startRound();
             }
         } else if (e.getAction() == ActionType.KEYBOARD_UP)
         {

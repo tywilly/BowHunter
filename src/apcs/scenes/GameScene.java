@@ -1,7 +1,6 @@
 package apcs.scenes;
 
 import game.RoundManager;
-import apcs.entitys.mob.Zombie;
 import apcs.entitys.player.Player;
 import apcs.entitys.world.World;
 
@@ -31,8 +30,6 @@ public class GameScene extends Scene {
 		world.addToScene();
 		
 		this.addEntity(player);
-		
-		this.roundManager.spawnZombies(50);
 		
 		this.addEntity(new DebugInfo());
 
