@@ -29,7 +29,7 @@ public class Human extends Mob{
 	public void update(long mili) {
 		// TODO Auto-generated method stub
 		
-		Player p = ((GameScene) SceneManager.getCurrentScene()).getPlayer();
+		Player p = GameScene.player;
 		
 		if (this.getX() > p.getX()) {
 			xLoc -= (0.25 * mili);

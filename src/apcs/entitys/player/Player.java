@@ -28,7 +28,7 @@ public class Player extends Sprite implements Updateable, Input, Damageable
 
     Texture rightTexture;
 
-    Texture leftTexture = new Texture("assets/characters/obama_sprite_left.png");
+    Texture leftTexture = TextureManager.createTexture("assets/characters/sarge_left.png");
 
     boolean right = false;
 
@@ -56,8 +56,8 @@ public class Player extends Sprite implements Updateable, Input, Damageable
 
     public Player(int x, int y)
     {
-        super(x, y, 64, 64, new Texture(
-                "assets/characters/obama_sprite_right.png"));
+        super(x, y, 64, 64, TextureManager.createTexture(
+                "assets/characters/sarge_right.png"));
         this.getTexture().loadIntoMemery();
         rightTexture = this.getTexture();
         leftTexture.loadIntoMemery();
@@ -75,7 +75,7 @@ public class Player extends Sprite implements Updateable, Input, Damageable
         g.setColor(Color.BLACK);
         g.setFont(new Font("Arial", Font.BOLD, 20));
         g.drawString(playerName, (int)xLoc - 2, (int)yLoc - 10);
-
+        
     }
 
     @Override

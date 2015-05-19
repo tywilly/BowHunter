@@ -1,5 +1,6 @@
 package apcs.scenes;
 
+import apcs.entitys.mob.Zombie;
 import apcs.entitys.player.Player;
 import apcs.entitys.world.World;
 
@@ -9,7 +10,7 @@ import com.tywilly.WillyEngine.scene.Scene;
 
 public class GameScene extends Scene {
 
-	Player spriteTest = new Player(Engine.display.getWidth() / 2,
+	public static Player player = new Player(Engine.display.getWidth() / 2,
 			Engine.display.getHeight() / 4);
 	
 	public static World world;
@@ -24,19 +25,15 @@ public class GameScene extends Scene {
 
 		world.addToScene();
 		
-		this.addEntity(spriteTest);
+		this.addEntity(player);
 		
 		
-//		for(int i=0;i<1;i++){
-//			this.addEntity(new Human((world.getWidth() / 2) + i * 64, world.getHeight() / 3));
-//		}
+		for(int i=0;i<10;i++){
+			this.addEntity(new Zombie());
+		}
 		
 		this.addEntity(new DebugInfo());
 
-	}
-
-	public Player getPlayer(){
-		return spriteTest;
 	}
 	
 }
