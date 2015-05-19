@@ -103,7 +103,6 @@ public class World {
 	public int getYLocation(){
 		return yLoc;
 	}
-	
 	public int getHeight(){
 		return height;
 	}
