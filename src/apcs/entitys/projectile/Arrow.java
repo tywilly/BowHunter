@@ -33,4 +33,10 @@ public class Arrow extends Projectile
         
     }
 
+    public void setDamageMod(float damageMod){
+        this.damage = (int)(this.damage * damageMod);
+    }
+    
 }
+
+

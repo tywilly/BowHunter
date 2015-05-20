@@ -11,8 +11,11 @@ public class Bow extends Weapon {
 	public void onAction(Player p, float xDir, float yDir, int angle) {
 		// TODO Auto-generated method stub
 
-		SceneManager.getCurrentScene().addEntity(
-				new Arrow(p.getX(), p.getY(), xDir, yDir, angle, p));
+	    Arrow ar = new Arrow(p.getX(), p.getY(), xDir, yDir, angle, p);
+	    
+	    ar.setDamageMod(p.getDamageModifier());
+	    
+		SceneManager.getCurrentScene().addEntity(ar);
 
 	}
 

@@ -44,6 +44,8 @@ public class Player extends Sprite implements Updateable, Input, Damageable
     long down1 = 0;
 
     int health = 100;
+    
+    float mag = 0;
 
     Inventory inventory = new Inventory();
 
@@ -200,13 +202,13 @@ public class Player extends Sprite implements Updateable, Input, Damageable
 					float yDir = e.getMouseY() - (this.yLoc + this.height / 2);
 
                     double angle = Math.atan2(yDir, xDir);
-                    float mag = ((up1-down1)/100);
+                    mag = ((up1-down1)/100);
                     if(up1-down1<100)
                     {
                         mag=1.0f;
                     }
-                    if(up1-down1>300){
-                        mag=3.0f;
+                    if(up1-down1>500){
+                        mag=5.0f;
                     }
 
                     yDir = (float) (mag * Math.sin(angle));
@@ -250,4 +252,9 @@ public class Player extends Sprite implements Updateable, Input, Damageable
 
     }
 
+    public float getDamageModifier(){
+        System.out.println((float)Math.pow((double) mag, 1.5));
+        return (float) Math.pow((double) mag, 1.5);
+    }
+    
 }
