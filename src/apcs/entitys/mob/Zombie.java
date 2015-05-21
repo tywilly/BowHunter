@@ -14,10 +14,13 @@ import apcs.scenes.GameScene;
 public class Zombie extends Mob {
 
     public boolean isMoving = false;
+    public int strength = 0;
     
-	public Zombie() {
-		super(0, 0, 64, 64, TextureManager
+	public Zombie(int health, int s) {
+		super(0, 0, 64, 64, health, TextureManager
 				.createTexture("assets/characters/obama_sprite_left.png"));
+		
+		strength = s;
 
 		if (!this.getTexture().isLoaded()) {
 			this.getTexture().loadIntoMemery();
@@ -92,5 +95,10 @@ public class Zombie extends Mob {
 		}
 		
 	}
+	
+	   public int getStrength()
+	    {
+	        return strength;
+	    }
 
 }

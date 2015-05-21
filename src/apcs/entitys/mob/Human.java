@@ -15,7 +15,7 @@ public class Human extends Mob{
 	Texture right = TextureManager.createTexture("assets/characters/obama_sprite_left.png");
 	
 	public Human(int x, int y) {
-		super(x, y, 64, 64, TextureManager.createTexture("assets/characters/obama_sprite_left.png"));
+		super(x, y, 64, 64, 100, TextureManager.createTexture("assets/characters/obama_sprite_left.png"));
 		// TODO Auto-generated constructor stub
 		
 		if(!left.isLoaded() || !right.isLoaded()){

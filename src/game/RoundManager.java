@@ -18,7 +18,7 @@ public class RoundManager
     
     public void spawnZombies(int num){
         for(int i=0;i<num;i++){
-            SceneManager.getCurrentScene().addEntity(new Zombie());
+            SceneManager.getCurrentScene().addEntity(new Zombie(100, 0));
         }
     }
     
