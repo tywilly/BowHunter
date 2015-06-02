@@ -87,6 +87,8 @@ public class Zombie extends Mob {
 		
 		this.setHealth(this.getHealth() - projectile.getDamage());
 		
+		GameScene.scoreManager.setScore(GameScene.scoreManager.getScore() + 10);
+		
 		if (this.getHealth() <= 0){
 			SceneManager.getCurrentScene().removeEntity(this);
 			GameScene.roundManager.registerKill();
