@@ -32,7 +32,7 @@ public class RoundManager
     		numLeft--;
     		numOnField--;
     		
-    		System.out.println("Kill!" + numLeft);
+    		System.out.println("Kill! " + numLeft);
     		
     	}else{
     	
