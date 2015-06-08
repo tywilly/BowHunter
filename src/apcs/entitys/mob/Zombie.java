@@ -27,12 +27,12 @@ public class Zombie extends Mob {
 
 		Random rand = new Random();
 		
-		int xOne = rand.nextInt(Math.abs(world.getXLocation()));
+		int xOne = rand.nextInt(Math.abs(world.getXLocation() + 1));
 		int xTwo = rand.nextInt(world.getWidth()
 				- Engine.display.getWidth())
 				+ Engine.display.getWidth();
 
-		int yOne = rand.nextInt(Math.abs(world.getYLocation()));
+		int yOne = rand.nextInt(Math.abs(world.getYLocation() + 1));
 		int yTwo = rand.nextInt(world.getHeight()
 				- Engine.display.getHeight())
 				+ Engine.display.getHeight();
@@ -67,16 +67,16 @@ public class Zombie extends Mob {
 	public void update(long mili) {
 		// TODO Auto-generated method stub
 		
-	    if(this.xLoc > GameScene.player.getX()){
-	        this.xLoc -= (.25) * mili;
-	    }else{
-	        this.xLoc += (.25) * mili;
+	    if(this.xLoc > GameScene.player.getX() - 2){
+	        this.xLoc -= (.2) * mili;
+	    }else if(this.xLoc < GameScene.player.getX() + 2){
+	        this.xLoc += (.2) * mili;
 	    }
 	    
-	    if(this.yLoc > GameScene.player.getY()){
-            this.yLoc -= (.25) * mili;
-        }else{
-            this.yLoc += (.25) * mili;
+	    if(this.yLoc > GameScene.player.getY() - 2){
+            this.yLoc -= (.2) * mili;
+        }else if(this.yLoc < GameScene.player.getY() + 2){
+            this.yLoc += (.2) * mili;
         }
 		
 	}
