@@ -6,15 +6,20 @@
  */
 package game;
 
+import com.tywilly.WillyEngine.Engine;
+import com.tywilly.WillyEngine.entity.text.Text;
 import com.tywilly.WillyEngine.scene.SceneManager;
 
 import apcs.entitys.mob.Zombie;
+import apcs.entitys.text.RoundText;
 
 
 public class RoundManager
 {
 
 	Thread spawnThread;
+	public RoundText text = new RoundText();
+	public Text zombiesLeftText = new Text((Engine.display.getWidth()/2) - 50, 25, 20, "Zombies Left: 0");
 	
 	public final int NUM_PER_WAVE = 10;
 	
@@ -32,11 +37,13 @@ public class RoundManager
     		numLeft--;
     		numOnField--;
     		
-    		System.out.println("Kill! " + numLeft);
+    		zombiesLeftText.setText("Zombies Left: " + numLeft);
     		
     	}else{
     	
     		stopRound();
+    		
+    		zombiesLeftText.setText("Zombies Left: 0");
     		
     	}
     }
@@ -57,6 +64,10 @@ public class RoundManager
         	System.out.println(numLeft);
         	
         	spawnThread.start();
+        	
+        	text.setText("Round: " + roundNumber + " - play");
+        	zombiesLeftText.setText("Zombies Left: " + numLeft);
+        	
     	}
     	
     }
@@ -70,6 +81,8 @@ public class RoundManager
     		System.out.println("End Round!");
     		
     		roundNumber++;
+    		
+    		text.setText("Round: " + roundNumber + " - Inter");
     		
     	}
     }

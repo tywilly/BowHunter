@@ -8,16 +8,20 @@ import apcs.entitys.Damageable;
 import apcs.entitys.item.ActionItem;
 import apcs.entitys.item.weapons.Bow;
 import apcs.entitys.item.weapons.Weapon;
+import apcs.entitys.mob.Zombie;
 import apcs.entitys.player.skills.AttackSkill;
 import apcs.entitys.player.skills.DefenseSkill;
 import apcs.entitys.projectile.Projectile;
+import apcs.scenes.EndScene;
 import apcs.scenes.GameScene;
 
 import com.tywilly.WillyEngine.Engine;
 import com.tywilly.WillyEngine.entity.sprite.Sprite;
+import com.tywilly.WillyEngine.entity.text.Text;
 import com.tywilly.WillyEngine.input.Input;
 import com.tywilly.WillyEngine.input.InputAction;
 import com.tywilly.WillyEngine.input.InputAction.ActionType;
+import com.tywilly.WillyEngine.scene.SceneManager;
 import com.tywilly.WillyEngine.texture.Texture;
 import com.tywilly.WillyEngine.texture.TextureManager;
 import com.tywilly.WillyEngine.update.Updateable;
@@ -40,6 +44,8 @@ public class Player extends Sprite implements Updateable, Input, Damageable
     boolean down = false;
 
     int health = 100;
+    
+    public Text healthText = new Text(Engine.display.getWidth() - Engine.display.getWidth()/10, 25, 20, "Health: " + health);
 
     Inventory inventory = new Inventory();
 
@@ -227,8 +233,17 @@ public class Player extends Sprite implements Updateable, Input, Damageable
     {
         // TODO Auto-generated method stub
 
-        this.health -= projectile.getDamage();
-        System.out.println("DAMAGE!" + this.health);
+    	
+    	if(killer instanceof Zombie){
+    		this.health -= 10;
+    		
+    		healthText.setText("Health: " + health);
+    		
+    	}
+    	
+    	if(this.health <= 0){
+    		SceneManager.loadScene(new EndScene());
+    	}
 
     }
 

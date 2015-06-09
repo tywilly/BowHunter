@@ -38,6 +38,9 @@ public class GameScene extends Scene {
 		this.addEntity(new DebugInfo());
 		
 		this.addEntity(new ScoreText());
+		this.addEntity(roundManager.text);
+		this.addEntity(roundManager.zombiesLeftText);
+		this.addEntity(player.healthText);
 
 	}
 	

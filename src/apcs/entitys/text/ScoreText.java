@@ -18,7 +18,7 @@ public class ScoreText extends Text implements Updateable
     
     public ScoreText()
     {
-        super(50,Engine.display.getHeight() - (Engine.display.getHeight()/5),20,"");
+        super(25,Engine.display.getHeight() - (Engine.display.getHeight()/10),20,"");
         
     }
 
@@ -26,8 +26,9 @@ public class ScoreText extends Text implements Updateable
     public void update(long mili)
     {
         this.setText("Score: " + GameScene.scoreManager.getScore());
+        
+		this.setY(Engine.display.getHeight() - (Engine.display.getHeight()/10));
+        
     }
-
-    
-    
+ 
 }
