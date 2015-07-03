@@ -1,8 +1,9 @@
 package apcs.scenes;
 
 import game.RoundManager;
-import apcs.entitys.mob.Zombie;
+import game.ScoreManager;
 import apcs.entitys.player.Player;
+import apcs.entitys.text.ScoreText;
 import apcs.entitys.world.World;
 
 import com.tywilly.WillyEngine.Engine;
@@ -17,12 +18,14 @@ public class GameScene extends Scene {
 	public static World world;
 	
 	public static RoundManager roundManager;
+	public static ScoreManager scoreManager;
 
 	@Override
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		
 	    roundManager = new RoundManager();
+	    scoreManager = new ScoreManager();
 	    
 		world = new World();
 		
@@ -32,9 +35,12 @@ public class GameScene extends Scene {
 		
 		this.addEntity(player);
 		
-		this.roundManager.spawnZombies(50);
-		
 		this.addEntity(new DebugInfo());
+		
+		this.addEntity(new ScoreText());
+		this.addEntity(roundManager.text);
+		this.addEntity(roundManager.zombiesLeftText);
+		this.addEntity(player.healthText);
 
 	}
 	

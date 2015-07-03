@@ -61,9 +61,9 @@ public class Projectile extends Sprite implements Updateable
                 {
                     if ((Damageable) ent != shooter)
                     {
-                        if (this.getX() + this.width >= ent.getX())
+                        if (this.getX() + this.width/2 >= ent.getX() && this.getX() + this.width/2 <= ent.getX() + ent.getWidth())
                         {
-                            if (this.getY() + this.height >= ent.getY())
+                            if (this.getY() + this.height/2 >= ent.getY() && this.getY() + height/2 <= ent.getY() + ent.getHeight())
                             {
                                 SceneManager.getCurrentScene().removeEntity(
                                         this);
