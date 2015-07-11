@@ -1,3 +1,4 @@
+package apcs;
 import net.client.ClientSocket;
 import apcs.scenes.GameScene;
 
@@ -8,7 +9,7 @@ import com.tywilly.WillyEngine.scene.SceneManager;
 
 public class ClientDriver {
 
-	ClientSocket client;
+	public static ClientSocket client;
 	
 	Engine engine;
 	
@@ -20,7 +21,7 @@ public class ClientDriver {
 		SceneManager.loadScene(new GameScene());
 		
 		client = new ClientSocket();
-		client.start();
+		client.run();
 		
 	}
 	

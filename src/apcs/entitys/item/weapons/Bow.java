@@ -1,5 +1,6 @@
 package apcs.entitys.item.weapons;
 
+import apcs.entitys.player.APlayer;
 import apcs.entitys.player.Player;
 import apcs.entitys.projectile.Arrow;
 

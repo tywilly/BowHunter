@@ -1,6 +1,7 @@
 package apcs.entitys.item.weapons;
 
 import apcs.entitys.item.ActionItem;
+import apcs.entitys.player.APlayer;
 import apcs.entitys.player.Player;
 
 public abstract class Weapon extends ActionItem{

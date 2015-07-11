@@ -1,7 +1,7 @@
 package apcs.entitys.mob;
 
 import apcs.entitys.Damageable;
-import apcs.entitys.player.Player;
+import apcs.entitys.player.APlayer;
 import apcs.entitys.projectile.Projectile;
 import apcs.scenes.GameScene;
 
@@ -29,7 +29,7 @@ public class Human extends Mob{
 	public void update(long mili) {
 		// TODO Auto-generated method stub
 		
-		Player p = GameScene.player;
+		APlayer p = GameScene.player;
 		
 		if (this.getX() > p.getX()) {
 			xLoc -= (0.25 * mili);

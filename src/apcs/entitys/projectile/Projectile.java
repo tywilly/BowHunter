@@ -1,7 +1,7 @@
 package apcs.entitys.projectile;
 
 import apcs.entitys.Damageable;
-import apcs.entitys.player.Player;
+import apcs.entitys.player.APlayer;
 
 import com.tywilly.WillyEngine.Engine;
 import com.tywilly.WillyEngine.entity.Entity;
@@ -57,7 +57,7 @@ public class Projectile extends Sprite implements Updateable
 
                 Entity ent = SceneManager.getCurrentScene().ents.get(i);
 
-                if (ent instanceof Damageable || ent instanceof Player)
+                if (ent instanceof Damageable || ent instanceof APlayer)
                 {
                     if ((Damageable) ent != shooter)
                     {
