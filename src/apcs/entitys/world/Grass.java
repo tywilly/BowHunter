@@ -1,11 +1,12 @@
 package apcs.entitys.world;
 
+import java.awt.Graphics;
+
 import com.tywilly.WillyEngine.entity.sprite.Sprite;
 import com.tywilly.WillyEngine.texture.Texture;
 import com.tywilly.WillyEngine.texture.TextureManager;
-import com.tywilly.WillyEngine.update.Updateable;
 
-public class Grass extends Sprite implements Updateable{
+public class Grass extends Sprite{
 
 	Texture textre = TextureManager.createTexture("assets/world/ground/grass.png");
 	
@@ -18,10 +19,14 @@ public class Grass extends Sprite implements Updateable{
 	}
 
 	@Override
-	public void update(long mili) {
+	public void paint(Graphics g) {
 		// TODO Auto-generated method stub
 		
-//		this.xLoc += GameScene.world.getXLocation();
-//		this.yLoc += GameScene.world.getYLocation();
+		g.drawImage(this.getTexture().getImage(), (int)this.getX() + World.xLoc, (int)this.getY() + World.yLoc, ((int)this.getX() + World.xLoc) + this.width, ((int)this.getY() + World.yLoc) + this.height,
+                0, 0, this.getTexture().getImage().getWidth(), this.getTexture().getImage().getHeight(), null);
+		
 	}
+	
+	
+	
 }

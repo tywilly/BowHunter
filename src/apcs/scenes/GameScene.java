@@ -3,7 +3,6 @@ package apcs.scenes;
 import game.RoundManager;
 import game.ScoreManager;
 import apcs.entitys.player.Player;
-import apcs.entitys.text.ScoreText;
 import apcs.entitys.world.World;
 
 import com.tywilly.WillyEngine.Engine;
@@ -36,10 +35,6 @@ public class GameScene extends Scene {
 		this.addEntity(player);
 		
 		this.addEntity(new DebugInfo());
-		
-		this.addEntity(new ScoreText());
-		this.addEntity(roundManager.text);
-		this.addEntity(roundManager.zombiesLeftText);
 		this.addEntity(player.healthText);
 
 	}

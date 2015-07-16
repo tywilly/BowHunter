@@ -1,5 +1,7 @@
 package apcs.entitys.player;
 
+import java.awt.Graphics;
+
 import net.client.protocol.packet.MovePacket;
 import apcs.ClientDriver;
 import apcs.entitys.Damageable;
@@ -21,7 +23,17 @@ public class Player extends APlayer implements Updateable, Input, Damageable {
 
 	public Player(int x, int y) {
 		super(x, y);
-		// TODO Auto-generated constructor stub
+		this.playerName = "TyWilly";
+	}
+
+	
+	
+	@Override
+	public void paint(Graphics g) {
+		// TODO Auto-generated method stub
+		g.drawImage(this.getTexture().getImage(), (int)xLoc, (int)yLoc, ((int)xLoc) + this.width, ((int)yLoc) + this.height,
+                0, 0, this.getTexture().getImage().getWidth(), this.getTexture().getImage().getHeight(), null);
+
 	}
 
 	@Override
@@ -78,29 +90,33 @@ public class Player extends APlayer implements Updateable, Input, Damageable {
 			if (e.getKeyCode() == 'd') {
 				this.setTexure(rightTexture);
 				right = true;
-				ClientDriver.client.getPacketManager()
-						.addQueue(
-								new MovePacket("", "" + this.getX() + " "
-										+ this.getY()));
+
+				ClientDriver.client.getPacketManager().addQueue(
+						new MovePacket(this.getUUID(), this.getWorldX() + " "
+								+ this.getWorldY()));
+
 			} else if (e.getKeyCode() == 'a') {
 				this.setTexure(leftTexture);
 				left = true;
-				ClientDriver.client.getPacketManager()
-						.addQueue(
-								new MovePacket("", "" + this.getX() + " "
-										+ this.getY()));
+
+				ClientDriver.client.getPacketManager().addQueue(
+						new MovePacket(this.getUUID(), this.getWorldX() + " "
+								+ this.getWorldY()));
+
 			} else if (e.getKeyCode() == 'w') {
 				up = true;
-				ClientDriver.client.getPacketManager()
-						.addQueue(
-								new MovePacket("", "" + this.getX() + " "
-										+ this.getY()));
+
+				ClientDriver.client.getPacketManager().addQueue(
+						new MovePacket(this.getUUID(), this.getWorldX() + " "
+								+ this.getWorldY()));
+
 			} else if (e.getKeyCode() == 's') {
 				down = true;
-				ClientDriver.client.getPacketManager()
-						.addQueue(
-								new MovePacket("", "" + this.getX() + " "
-										+ this.getY()));
+
+				ClientDriver.client.getPacketManager().addQueue(
+						new MovePacket(this.getUUID(), this.getWorldX() + " "
+								+ this.getWorldY()));
+
 			} else if (e.getKeyCode() == ' ') {
 				GameScene.roundManager.startRound();
 			}

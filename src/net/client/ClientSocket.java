@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import apcs.scenes.GameScene;
 import net.client.protocol.PacketManager;
 import net.client.protocol.packet.LoginPacket;
 import net.client.protocol.packet.Packet;
@@ -40,7 +41,7 @@ public class ClientSocket {
 	
 	public void run() {
 
-		this.packetMan.addQueue(new LoginPacket("TyWilly"));
+		this.packetMan.addQueue(new LoginPacket(GameScene.player.playerName));
 
 		Thread inStream = new Thread(new Runnable() {
 
@@ -58,7 +59,7 @@ public class ClientSocket {
 						byte id = Byte.parseByte(line.substring(0,
 								line.indexOf(" ")));
 
-						String payload = line.substring(line.indexOf(" "),
+						String payload = line.substring(line.indexOf(" ")+1,
 								line.length());
 
 						packetMan.getPacketById(id).onRecieve(id, payload);
@@ -66,6 +67,9 @@ public class ClientSocket {
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
+						
+						disconnect();
+						
 					}
 
 				}
@@ -89,7 +93,6 @@ public class ClientSocket {
 							
 							Packet pack = packetMan.getQueue().get(i);
 							
-							System.out.println(pack.getData());
 							out.print(pack.getData() + "\r");
 							
 						}
@@ -108,4 +111,16 @@ public class ClientSocket {
 		outStream.start();
 
 	}
+	
+	public void disconnect(){
+		
+		try {
+			socket.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 }

@@ -1,6 +1,5 @@
 package apcs.entitys.item.weapons;
 
-import apcs.entitys.player.APlayer;
 import apcs.entitys.player.Player;
 import apcs.entitys.projectile.Arrow;
 
@@ -13,8 +12,8 @@ public class Bow extends Weapon {
 		// TODO Auto-generated method stub
 
 		SceneManager.getCurrentScene().addEntity(
-				new Arrow(p.getX(), p.getY(), xDir, yDir, angle, p));
-
+				new Arrow(p.getWorldX(), p.getWorldY(), xDir, yDir, angle, p));
+		
 	}
 
 }

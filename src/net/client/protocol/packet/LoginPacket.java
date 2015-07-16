@@ -18,8 +18,15 @@ public class LoginPacket extends Packet{
 	public void onRecieve(byte id, String payload) {
 		// TODO Auto-generated method stub
 		
-		if(payload != ((GameScene)SceneManager.getCurrentScene()).player.playerName){
-			SceneManager.getCurrentScene().addEntity(new PlayerMP(100, 100, payload));
+		if(!GameScene.player.playerName.equals(payload.split(" ")[1])){
+			
+			PlayerMP mp = new PlayerMP(100, 100, payload.split(" ")[1]);
+			
+			mp.setUUID(payload.split(" ")[0]);
+			
+			SceneManager.getCurrentScene().addEntity(mp);
+		}else{
+			GameScene.player.setUUID(payload.split(" ")[0]);
 		}
 		
 	}

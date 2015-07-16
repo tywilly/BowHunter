@@ -1,12 +1,12 @@
 package apcs.entitys.mob;
 
 import apcs.entitys.Damageable;
+import apcs.entitys.WorldEntity;
 
-import com.tywilly.WillyEngine.entity.sprite.Sprite;
 import com.tywilly.WillyEngine.texture.Texture;
 import com.tywilly.WillyEngine.update.Updateable;
 
-public abstract class Mob extends Sprite implements Updateable, Damageable{
+public abstract class Mob extends WorldEntity implements Updateable, Damageable{
 	
 	int health = 100;
 	

@@ -1,37 +1,19 @@
 package apcs.entitys.player;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-
-import net.client.protocol.packet.MovePacket;
-import apcs.ClientDriver;
-import apcs.entitys.Damageable;
-import apcs.entitys.item.ActionItem;
+import apcs.entitys.WorldEntity;
 import apcs.entitys.item.weapons.Bow;
-import apcs.entitys.item.weapons.Weapon;
-import apcs.entitys.mob.Zombie;
 import apcs.entitys.player.skills.AttackSkill;
 import apcs.entitys.player.skills.DefenseSkill;
-import apcs.entitys.projectile.Projectile;
-import apcs.scenes.EndScene;
-import apcs.scenes.GameScene;
 
 import com.tywilly.WillyEngine.Engine;
-import com.tywilly.WillyEngine.entity.sprite.Sprite;
 import com.tywilly.WillyEngine.entity.text.Text;
-import com.tywilly.WillyEngine.input.Input;
-import com.tywilly.WillyEngine.input.InputAction;
-import com.tywilly.WillyEngine.input.InputAction.ActionType;
-import com.tywilly.WillyEngine.scene.SceneManager;
 import com.tywilly.WillyEngine.texture.Texture;
 import com.tywilly.WillyEngine.texture.TextureManager;
-import com.tywilly.WillyEngine.update.Updateable;
 
-public abstract class APlayer extends Sprite
+public abstract class APlayer extends WorldEntity
 {
-
-    public String playerName = "Player 1";
+	
+    public String playerName = "";
 
     Texture rightTexture;
 
@@ -71,21 +53,9 @@ public abstract class APlayer extends Sprite
 
     }
 
-    @Override
-    public void paint(Graphics g)
-    {
-        // TODO Auto-generated method stub
-        super.paint(g);
-
-        g.setColor(Color.BLACK);
-        g.setFont(new Font("Arial", Font.BOLD, 20));
-        g.drawString(playerName, (int)xLoc - 2, (int)yLoc - 10);
-        
-    }
-
     public Inventory getInventory()
     {
         return inventory;
     }
-
+    
 }

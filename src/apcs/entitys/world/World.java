@@ -6,9 +6,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import apcs.entitys.mob.Mob;
+import apcs.entitys.player.Player;
+import apcs.entitys.player.PlayerMP;
 import apcs.entitys.projectile.Projectile;
 
 import com.tywilly.WillyEngine.entity.Entity;
+import com.tywilly.WillyEngine.entity.text.Text;
 import com.tywilly.WillyEngine.scene.SceneManager;
 
 public class World {
@@ -16,8 +19,8 @@ public class World {
 	private int width = 0;
 	private int height = 0;
 	
-	private int xLoc = 0;
-	private int yLoc = 0;
+	public static int xLoc = 0;
+	public static int yLoc = 0;
 
 	private ArrayList<Entity> world = new ArrayList<Entity>();
 
@@ -80,19 +83,19 @@ public class World {
 		yLoc += y;
 		xLoc += x;
 		
-		for(int i=0;i<world.size();i++){
-			world.get(i).setX((world.get(i).getX() + x));
-			world.get(i).setY((world.get(i).getY() + y));
-		}
+//		for(int i=0;i<world.size();i++){
+//			world.get(i).setX((world.get(i).getX() + x));
+//			world.get(i).setY((world.get(i).getY() + y));
+//		}
 		
-		for(int i=0;i<SceneManager.getCurrentScene().ents.size();i++){
-			Entity ent = SceneManager.getCurrentScene().ents.get(i);
-			
-			if(ent instanceof Mob || ent instanceof Projectile){
-				ent.setX(ent.getX() + x);
-				ent.setY(ent.getY() + y);
-			}
-		}
+//		for(int i=0;i<SceneManager.getCurrentScene().ents.size();i++){
+//			Entity ent = SceneManager.getCurrentScene().ents.get(i);
+//			
+//			if(!(ent instanceof Player || ent instanceof Text)){
+//				ent.setX(ent.getX() + x);
+//				ent.setY(ent.getY() + y);
+//			}
+//		}
 		
 	}
 

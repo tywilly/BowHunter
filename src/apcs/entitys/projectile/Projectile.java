@@ -1,16 +1,17 @@
 package apcs.entitys.projectile;
 
 import apcs.entitys.Damageable;
-import apcs.entitys.player.APlayer;
+import apcs.entitys.WorldEntity;
+import apcs.entitys.player.Player;
+import apcs.entitys.world.World;
 
 import com.tywilly.WillyEngine.Engine;
 import com.tywilly.WillyEngine.entity.Entity;
-import com.tywilly.WillyEngine.entity.sprite.Sprite;
 import com.tywilly.WillyEngine.scene.SceneManager;
 import com.tywilly.WillyEngine.texture.Texture;
 import com.tywilly.WillyEngine.update.Updateable;
 
-public class Projectile extends Sprite implements Updateable
+public class Projectile extends WorldEntity implements Updateable
 {
 
     float xDir = 0;
@@ -39,7 +40,7 @@ public class Projectile extends Sprite implements Updateable
     {
         // TODO Auto-generated method stub
 
-        if (xLoc >= Engine.display.getWidth() || xLoc <= 0)
+        if (xLoc >= Engine.display.getWidth() + -World.xLoc || xLoc <= 0)
         {
             SceneManager.getCurrentScene().removeEntity(this);
         }
@@ -57,7 +58,7 @@ public class Projectile extends Sprite implements Updateable
 
                 Entity ent = SceneManager.getCurrentScene().ents.get(i);
 
-                if (ent instanceof Damageable || ent instanceof APlayer)
+                if (ent instanceof Damageable || ent instanceof Player)
                 {
                     if ((Damageable) ent != shooter)
                     {
