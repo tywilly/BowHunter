@@ -1,7 +1,5 @@
 package apcs.scenes;
 
-import game.RoundManager;
-import game.ScoreManager;
 import apcs.entitys.player.Player;
 import apcs.entitys.world.World;
 
@@ -15,17 +13,10 @@ public class GameScene extends Scene {
 			Engine.display.getHeight() / 4);
 	
 	public static World world;
-	
-	public static RoundManager roundManager;
-	public static ScoreManager scoreManager;
 
 	@Override
 	public void onCreate() {
 		// TODO Auto-generated method stub
-		
-	    roundManager = new RoundManager();
-	    scoreManager = new ScoreManager();
-	    
 		world = new World();
 		
 		world.loadWorld("assets/world/default.world");

@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
+import apcs.entitys.world.World;
+
 public class PlayerMP extends APlayer{
 	
 	public PlayerMP(int x, int y, String username) {
@@ -20,7 +22,7 @@ public class PlayerMP extends APlayer{
 		
         g.setColor(Color.BLACK);
         g.setFont(new Font("Arial", Font.BOLD, 20));
-        g.drawString(playerName, (int)this.getWorldX() - 2, (int)this.getWorldY() - 10);
+        g.drawString(playerName, (int)(this.getX() + World.xLoc) - 2, (int)(this.getY() + World.yLoc) - 10);
 		
 	}
 }

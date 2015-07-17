@@ -7,7 +7,6 @@ import apcs.ClientDriver;
 import apcs.entitys.Damageable;
 import apcs.entitys.item.ActionItem;
 import apcs.entitys.item.weapons.Weapon;
-import apcs.entitys.mob.Zombie;
 import apcs.entitys.projectile.Projectile;
 import apcs.scenes.EndScene;
 import apcs.scenes.GameScene;
@@ -26,8 +25,6 @@ public class Player extends APlayer implements Updateable, Input, Damageable {
 		this.playerName = "TyWilly";
 	}
 
-	
-	
 	@Override
 	public void paint(Graphics g) {
 		// TODO Auto-generated method stub
@@ -49,6 +46,10 @@ public class Player extends APlayer implements Updateable, Input, Damageable {
 				yLoc -= 0.5 * mili;
 			}
 
+			ClientDriver.client.sendPacket(
+					new MovePacket(this.getUUID(), this.getWorldX() + " "
+							+ this.getWorldY()));
+			
 		} else if (down) {
 
 			if (yLoc + height / 2 >= Engine.display.getHeight() / 2
@@ -59,6 +60,10 @@ public class Player extends APlayer implements Updateable, Input, Damageable {
 				yLoc += 0.5 * mili;
 			}
 
+			ClientDriver.client.sendPacket(
+					new MovePacket(this.getUUID(), this.getWorldX() + " "
+							+ this.getWorldY()));
+			
 		}
 
 		if (right) {
@@ -70,6 +75,11 @@ public class Player extends APlayer implements Updateable, Input, Damageable {
 			} else if (xLoc + width <= Engine.display.getWidth()) {
 				xLoc += 0.5 * mili;
 			}
+			
+			ClientDriver.client.sendPacket(
+					new MovePacket(this.getUUID(), this.getWorldX() + " "
+							+ this.getWorldY()));
+			
 		} else if (left) {
 
 			if (xLoc + width / 2 <= Engine.display.getWidth() / 2
@@ -78,6 +88,11 @@ public class Player extends APlayer implements Updateable, Input, Damageable {
 			} else if (xLoc >= 0) {
 				xLoc -= 0.5 * mili;
 			}
+			
+			ClientDriver.client.sendPacket(
+					new MovePacket(this.getUUID(), this.getWorldX() + " "
+							+ this.getWorldY()));
+			
 		}
 
 	}
@@ -90,35 +105,13 @@ public class Player extends APlayer implements Updateable, Input, Damageable {
 			if (e.getKeyCode() == 'd') {
 				this.setTexure(rightTexture);
 				right = true;
-
-				ClientDriver.client.getPacketManager().addQueue(
-						new MovePacket(this.getUUID(), this.getWorldX() + " "
-								+ this.getWorldY()));
-
 			} else if (e.getKeyCode() == 'a') {
 				this.setTexure(leftTexture);
 				left = true;
-
-				ClientDriver.client.getPacketManager().addQueue(
-						new MovePacket(this.getUUID(), this.getWorldX() + " "
-								+ this.getWorldY()));
-
 			} else if (e.getKeyCode() == 'w') {
 				up = true;
-
-				ClientDriver.client.getPacketManager().addQueue(
-						new MovePacket(this.getUUID(), this.getWorldX() + " "
-								+ this.getWorldY()));
-
 			} else if (e.getKeyCode() == 's') {
 				down = true;
-
-				ClientDriver.client.getPacketManager().addQueue(
-						new MovePacket(this.getUUID(), this.getWorldX() + " "
-								+ this.getWorldY()));
-
-			} else if (e.getKeyCode() == ' ') {
-				GameScene.roundManager.startRound();
 			}
 		} else if (e.getAction() == ActionType.KEYBOARD_UP) {
 
@@ -168,18 +161,6 @@ public class Player extends APlayer implements Updateable, Input, Damageable {
 	@Override
 	public void onDamage(Damageable killer, Projectile projectile) {
 		// TODO Auto-generated method stub
-
-		if (killer instanceof Zombie) {
-			this.health -= 10;
-
-			healthText.setText("Health: " + health);
-
-		}
-
-		if (this.health <= 0) {
-			SceneManager.loadScene(new EndScene());
-		}
-
 	}
 
 }

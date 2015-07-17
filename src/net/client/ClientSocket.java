@@ -17,7 +17,7 @@ public class ClientSocket {
 	PrintWriter out;
 	BufferedReader in;
 
-	PacketManager packetMan;
+	PacketManager packetMan = new PacketManager();
 
 	public ClientSocket() {
 		try {
@@ -27,21 +27,21 @@ public class ClientSocket {
 			in = new BufferedReader(new InputStreamReader(
 					socket.getInputStream()));
 
-			packetMan = new PacketManager();
-
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	public PacketManager getPacketManager(){
-		return packetMan;
-	}
+//	public PacketManager getPacketManager(){
+//		return packetMan;
+//	}
 	
 	public void run() {
 
-		this.packetMan.addQueue(new LoginPacket(GameScene.player.playerName));
+		//this.packetMan.addQueue(new LoginPacket(GameScene.player.playerName));
+		
+		this.sendPacket(new LoginPacket(GameScene.player.playerName));
 
 		Thread inStream = new Thread(new Runnable() {
 
@@ -85,6 +85,8 @@ public class ClientSocket {
 			public void run() {
 				// TODO Auto-generated method stub
 
+				try{
+				
 				while (!socket.isClosed()) {
 
 					if (!packetMan.getQueue().isEmpty()) {
@@ -93,7 +95,7 @@ public class ClientSocket {
 							
 							Packet pack = packetMan.getQueue().get(i);
 							
-							out.print(pack.getData() + "\r");
+							out.println(pack.getData());
 							
 						}
 
@@ -105,11 +107,20 @@ public class ClientSocket {
 
 				}
 
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				
 			}
 		});
 
-		outStream.start();
+		//outStream.start();
 
+	}
+	
+	public void sendPacket(Packet pack){
+		out.println(pack.getData());
+		out.flush();
 	}
 	
 	public void disconnect(){

@@ -83,20 +83,6 @@ public class World {
 		yLoc += y;
 		xLoc += x;
 		
-//		for(int i=0;i<world.size();i++){
-//			world.get(i).setX((world.get(i).getX() + x));
-//			world.get(i).setY((world.get(i).getY() + y));
-//		}
-		
-//		for(int i=0;i<SceneManager.getCurrentScene().ents.size();i++){
-//			Entity ent = SceneManager.getCurrentScene().ents.get(i);
-//			
-//			if(!(ent instanceof Player || ent instanceof Text)){
-//				ent.setX(ent.getX() + x);
-//				ent.setY(ent.getY() + y);
-//			}
-//		}
-		
 	}
 
 	public int getXLocation(){

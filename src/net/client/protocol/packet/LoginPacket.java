@@ -20,7 +20,7 @@ public class LoginPacket extends Packet{
 		
 		if(!GameScene.player.playerName.equals(payload.split(" ")[1])){
 			
-			PlayerMP mp = new PlayerMP(100, 100, payload.split(" ")[1]);
+			PlayerMP mp = new PlayerMP(0, 0, payload.split(" ")[1]);
 			
 			mp.setUUID(payload.split(" ")[0]);
 			

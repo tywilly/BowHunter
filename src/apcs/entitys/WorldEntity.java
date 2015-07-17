@@ -10,7 +10,7 @@ import com.tywilly.WillyEngine.texture.Texture;
 public class WorldEntity extends Sprite {
 
 	private String UUID = "";
-	
+
 	public WorldEntity(float x, float y, int height, int width, Texture texture) {
 		super(x, y, height, width, texture);
 		// TODO Auto-generated constructor stub
@@ -19,35 +19,39 @@ public class WorldEntity extends Sprite {
 	@Override
 	public void paint(Graphics g) {
 		// TODO Auto-generated method stub
-		
-		g.drawImage(this.getTexture().getImage(), (int)this.getWorldX(), (int)this.getWorldY(), ((int)this.getWorldX()) + this.width, ((int)this.getWorldY()) + this.height,
-                0, 0, this.getTexture().getImage().getWidth(), this.getTexture().getImage().getHeight(), null);
-		
-	}
-	
-	public void setWorldX(float x){
-		System.out.println("WE SET!");
-		this.xLoc = x - (World.xLoc);
-	}
-	
-	public float getWorldX(){
-		return (World.xLoc) + this.xLoc;
-	}
-	
-	public void setWorldY(float y){
-		this.yLoc = y - (World.yLoc);
-	}
-	
-	public float getWorldY(){
-		return (World.yLoc) + this.yLoc;
+
+		g.drawImage(this.getTexture().getImage(),
+				(int) (this.getX() + World.xLoc),
+				(int) (this.getY() + World.yLoc),
+				((int) (this.getX() + World.xLoc)) + this.width,
+				((int) (this.getY() + World.yLoc)) + this.height, 0, 0, this
+						.getTexture().getImage().getWidth(), this.getTexture()
+						.getImage().getHeight(), null);
+
 	}
 
-	public String getUUID(){
+	public void setWorldX(float x) {
+		this.xLoc = x - (-World.xLoc);
+	}
+
+	public float getWorldX() {
+		return this.xLoc + (-World.xLoc);
+	}
+
+	public void setWorldY(float y) {
+		this.yLoc = y - (-World.yLoc);
+	}
+
+	public float getWorldY() {
+		return this.yLoc + (-World.yLoc);
+	}
+
+	public String getUUID() {
 		return UUID;
 	}
-	
-	public void setUUID(String UUID){
+
+	public void setUUID(String UUID) {
 		this.UUID = UUID;
 	}
-	
+
 }

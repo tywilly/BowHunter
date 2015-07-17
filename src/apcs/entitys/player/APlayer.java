@@ -49,8 +49,6 @@ public abstract class APlayer extends WorldEntity
         rightTexture = this.getTexture();
         leftTexture.loadIntoMemery();
 
-        inventory.setHandItem(new Bow());
-
     }
 
     public Inventory getInventory()
