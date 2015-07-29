@@ -42,7 +42,7 @@ public class World {
 
 	public void addToScene() {
 		for (int i = 0; i < world.size(); i++) {
-			SceneManager.getCurrentScene().ents.add(0, world.get(i));
+			SceneManager.getCurrentScene().addEntity(world.get(i));
 		}
 	}
 

@@ -12,7 +12,7 @@ public class ChatManager {
 	
 	public static void addMessage(String message){
 		
-		Text msg = new Text(10, Engine.display.getHeight() - 50, 18, message);
+		Text msg = new Text(10, Engine.display.getHeight() - 50, 4, 18, message);
 		
 		if(chat.size() >= 5){
 			

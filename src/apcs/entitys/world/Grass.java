@@ -12,7 +12,7 @@ public class Grass extends Sprite {
 			.createTexture("assets/world/ground/grass.png");
 
 	public Grass(int x, int y) {
-		super(x, y, 64, 64, null);
+		super(x, y, 0, 64, 64, null);
 		// TODO Auto-generated constructor stub
 
 		this.setTexure(textre);

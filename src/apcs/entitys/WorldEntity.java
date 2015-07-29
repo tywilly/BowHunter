@@ -1,5 +1,7 @@
 package apcs.entitys;
 
+import java.awt.Graphics;
+
 import apcs.entitys.world.World;
 
 import com.tywilly.WillyEngine.entity.sprite.Sprite;
@@ -10,21 +12,21 @@ public class WorldEntity extends Sprite {
 	private String UUID = "";
 
 	public WorldEntity(float x, float y, int height, int width, Texture texture) {
-		super(x, y, height, width, texture);
+		super(x, y, 0, height, width, texture);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public void paint() {
+	public void paint(Graphics g) {
 		// TODO Auto-generated method stub
 
-//		g.drawImage(this.getTexture().getImage(),
-//				(int) (this.getX() + World.xLoc),
-//				(int) (this.getY() + World.yLoc),
-//				((int) (this.getX() + World.xLoc)) + this.width,
-//				((int) (this.getY() + World.yLoc)) + this.height, 0, 0, this
-//						.getTexture().getImage().getWidth(), this.getTexture()
-//						.getImage().getHeight(), null);
+		g.drawImage(this.getTexture().getImage(),
+				(int) (this.getX() + World.xLoc),
+				(int) (this.getY() + World.yLoc),
+				((int) (this.getX() + World.xLoc)) + this.width,
+				((int) (this.getY() + World.yLoc)) + this.height, 0, 0, this
+						.getTexture().getImage().getWidth(), this.getTexture()
+						.getImage().getHeight(), null);
 		
 
 	}

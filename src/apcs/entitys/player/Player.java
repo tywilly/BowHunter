@@ -24,6 +24,7 @@ public class Player extends APlayer implements Updateable, Input {
 		this.playerName = LoginForm.username;
 		this.setWorldX(x);
 		this.setWorldY(y);
+		this.setLayer(1);
 	}
 
 	@Override

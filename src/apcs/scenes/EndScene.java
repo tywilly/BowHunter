@@ -15,9 +15,9 @@ public class EndScene extends Scene{
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		
-		this.addEntity(new Text((Engine.display.getWidth()/2) - 50, (Engine.display.getHeight()/2) - 25, 24, "Game Over"));
+		this.addEntity(new Text((Engine.display.getWidth()/2) - 50, (Engine.display.getHeight()/2) - 25, 4, 24, "Game Over"));
 		
-		this.addEntity(new Text((Engine.display.getWidth()/2) - 95, (Engine.display.getHeight()/2), 20, "Press space to restart!"));
+		this.addEntity(new Text((Engine.display.getWidth()/2) - 95, (Engine.display.getHeight()/2), 20, 4, "Press space to restart!"));
 	
 		this.addEntity(new RestartButton());
 		
@@ -26,7 +26,7 @@ public class EndScene extends Scene{
 	public class RestartButton extends Entity implements Input{
 
 		public RestartButton() {
-			super(0, 0, 1, 1);
+			super(0, 0, 4, 1, 1);
 			// TODO Auto-generated constructor stub
 		}
 

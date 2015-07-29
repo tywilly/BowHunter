@@ -28,7 +28,7 @@ public abstract class APlayer extends WorldEntity
 
     private int health = 100;
     
-    public Text healthText = new Text(Engine.display.getWidth() - Engine.display.getWidth()/10, 25, 20, "Health: " + health);
+    public Text healthText = new Text(Engine.display.getWidth() - Engine.display.getWidth()/10, 25, 1, 20, "Health: " + health);
 
     Inventory inventory = new Inventory();
 

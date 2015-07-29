@@ -13,6 +13,7 @@ public class PlayerMP extends APlayer{
 		this.playerName = username;
 		this.setWorldX(x);
 		this.setWorldY(y);
+		this.setLayer(1);
 	}
 
 	@Override
