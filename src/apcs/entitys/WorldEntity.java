@@ -1,7 +1,5 @@
 package apcs.entitys;
 
-import java.awt.Graphics;
-
 import apcs.entitys.world.World;
 
 import com.tywilly.WillyEngine.entity.sprite.Sprite;
@@ -17,21 +15,24 @@ public class WorldEntity extends Sprite {
 	}
 
 	@Override
-	public void paint(Graphics g) {
+	public void paint() {
 		// TODO Auto-generated method stub
 
-		g.drawImage(this.getTexture().getImage(),
-				(int) (this.getX() + World.xLoc),
-				(int) (this.getY() + World.yLoc),
-				((int) (this.getX() + World.xLoc)) + this.width,
-				((int) (this.getY() + World.yLoc)) + this.height, 0, 0, this
-						.getTexture().getImage().getWidth(), this.getTexture()
-						.getImage().getHeight(), null);
+//		g.drawImage(this.getTexture().getImage(),
+//				(int) (this.getX() + World.xLoc),
+//				(int) (this.getY() + World.yLoc),
+//				((int) (this.getX() + World.xLoc)) + this.width,
+//				((int) (this.getY() + World.yLoc)) + this.height, 0, 0, this
+//						.getTexture().getImage().getWidth(), this.getTexture()
+//						.getImage().getHeight(), null);
+		
 
 	}
 
 	public void setWorldX(float x) {
-		this.xLoc = x - (-World.xLoc);
+		//this.xLoc = x + World.xLoc;
+		this.xLoc = x;
+		//System.out.println("WorldX: "+ World.xLoc + " PlayerX:" + this.xLoc + " Total: " + x);
 	}
 
 	public float getWorldX() {
@@ -39,7 +40,7 @@ public class WorldEntity extends Sprite {
 	}
 
 	public void setWorldY(float y) {
-		this.yLoc = y - (-World.yLoc);
+		this.yLoc = y;
 	}
 
 	public float getWorldY() {

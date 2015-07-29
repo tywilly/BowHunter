@@ -6,10 +6,10 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-import apcs.scenes.GameScene;
 import net.client.protocol.PacketManager;
 import net.client.protocol.packet.LoginPacket;
 import net.client.protocol.packet.Packet;
+import apcs.scenes.GameScene;
 
 public class ClientSocket {
 
@@ -38,8 +38,6 @@ public class ClientSocket {
 //	}
 	
 	public void run() {
-
-		//this.packetMan.addQueue(new LoginPacket(GameScene.player.playerName));
 		
 		this.sendPacket(new LoginPacket(GameScene.player.playerName));
 
@@ -78,43 +76,6 @@ public class ClientSocket {
 		});
 
 		inStream.start();
-
-		Thread outStream = new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-
-				try{
-				
-				while (!socket.isClosed()) {
-
-					if (!packetMan.getQueue().isEmpty()) {
-
-						for (int i=0;i<packetMan.getQueue().size();i++) {
-							
-							Packet pack = packetMan.getQueue().get(i);
-							
-							out.println(pack.getData());
-							
-						}
-
-						out.flush();
-						
-						packetMan.getQueue().clear();
-
-					}
-
-				}
-
-				}catch(Exception e){
-					e.printStackTrace();
-				}
-				
-			}
-		});
-
-		//outStream.start();
 
 	}
 	

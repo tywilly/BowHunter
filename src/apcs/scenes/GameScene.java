@@ -10,7 +10,7 @@ import com.tywilly.WillyEngine.scene.Scene;
 public class GameScene extends Scene {
 
 	public static Player player = new Player(Engine.display.getWidth() / 2,
-			Engine.display.getHeight() / 4);
+			Engine.display.getHeight() / 2);
 	
 	public static World world;
 
@@ -18,10 +18,6 @@ public class GameScene extends Scene {
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		world = new World();
-		
-		world.loadWorld("assets/world/default.world");
-
-		world.addToScene();
 		
 		this.addEntity(player);
 		

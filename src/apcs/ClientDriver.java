@@ -4,7 +4,6 @@ import net.client.ClientSocket;
 import apcs.scenes.GameScene;
 
 import com.tywilly.WillyEngine.Engine;
-import com.tywilly.WillyEngine.display.Display;
 import com.tywilly.WillyEngine.scene.SceneManager;
 
 public class ClientDriver {
@@ -15,7 +14,7 @@ public class ClientDriver {
 
 	public ClientDriver() {
 
-		engine = new Engine(Display.createDisplay(1280, 720));
+		engine = new Engine(Display.createDisplay(1280,720, "BowHunter"));
 		engine.start();
 
 		SceneManager.loadScene(new GameScene());
@@ -26,7 +25,7 @@ public class ClientDriver {
 	}
 
 	public static void main(String[] args) {
-		ClientDriver clientD = new ClientDriver();
+		LoginForm form = new LoginForm();
 	}
 
 }

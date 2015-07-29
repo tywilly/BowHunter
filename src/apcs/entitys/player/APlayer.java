@@ -1,7 +1,6 @@
 package apcs.entitys.player;
 
 import apcs.entitys.WorldEntity;
-import apcs.entitys.item.weapons.Bow;
 import apcs.entitys.player.skills.AttackSkill;
 import apcs.entitys.player.skills.DefenseSkill;
 
@@ -27,7 +26,7 @@ public abstract class APlayer extends WorldEntity
 
     boolean down = false;
 
-    int health = 100;
+    private int health = 100;
     
     public Text healthText = new Text(Engine.display.getWidth() - Engine.display.getWidth()/10, 25, 20, "Health: " + health);
 
@@ -56,4 +55,11 @@ public abstract class APlayer extends WorldEntity
         return inventory;
     }
     
+    public void setHealth(int health){
+    	this.health = health;
+    }
+    
+    public int getHealth(){
+    	return health;
+    }
 }

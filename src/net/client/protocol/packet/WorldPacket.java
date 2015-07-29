@@ -2,20 +2,20 @@ package net.client.protocol.packet;
 
 import apcs.scenes.GameScene;
 
+public class WorldPacket extends Packet {
 
-public class LoginPacket extends Packet {
-
-	public LoginPacket() {
+	public WorldPacket(){
+		super((byte)10, "");
 	}
-
-	public LoginPacket(String username) {
-		super((byte) 01, username);
-	}
-
+	
 	@Override
 	public void onRecieve(byte id, String payload) {
 		// TODO Auto-generated method stub
-		GameScene.player.setUUID(payload);
+		
+		GameScene.world.interpretWorld(payload);
+		
+		GameScene.world.addToScene();
+		
 	}
 
 }

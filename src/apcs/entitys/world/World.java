@@ -1,103 +1,72 @@
 package apcs.entitys.world;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
-
-import apcs.entitys.mob.Mob;
-import apcs.entitys.player.Player;
-import apcs.entitys.player.PlayerMP;
-import apcs.entitys.projectile.Projectile;
 
 import com.tywilly.WillyEngine.entity.Entity;
-import com.tywilly.WillyEngine.entity.text.Text;
 import com.tywilly.WillyEngine.scene.SceneManager;
 
 public class World {
-	
+
 	private int width = 0;
 	private int height = 0;
-	
-	public static int xLoc = 0;
-	public static int yLoc = 0;
+
+	public static float xLoc = 0;
+	public static float yLoc = 0;
 
 	private ArrayList<Entity> world = new ArrayList<Entity>();
 
-	public void loadWorld(String location) {
+	public void interpretWorld(String worldData) {
 
-		File worldFile = new File(location);
+		String[] lines = worldData.split(":");
 
-		try {
-			Scanner scan = new Scanner(worldFile);
+		Entity worldTile = null;
 
-			int lineNum = 0;
+		for (int x=0;x<lines.length;x++) {
 
-			while (scan.hasNextLine()) {
-
-			    String line = scan.nextLine();
-			    
-				String[] split = new String[line.length()];
-				
-				for(int i=0;i< split.length;i++){
-				    split[i] = line.substring(i, i+1);
+			for (int i = 0; i < lines[x].length(); i++) {
+				if (lines[x].charAt(i) == '1') {
+					worldTile = new Grass(i * 64, x * 64);
+				} else {
+					System.out.println("Split broke!");
 				}
-
-				Entity worldTile = null;
-
-				for (int i = 0; i < split.length; i++) {
-				    if(split[i].equalsIgnoreCase("1")){
-				        worldTile = new Grass(i * 64, lineNum * 64);
-				    }else{
-				        System.out.println("Split broke!" + split[i]);
-				    }
-					world.add(worldTile);
-				}
-				lineNum++;
-				
-				width = split.length * 64;
-				
+				world.add(worldTile);
 			}
 
-			height = lineNum * 64;
-			
-			scan.close();
-
-			System.out.println("Loaded world!" + world.size());
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+
+		width = lines[0].length() * 64;
+
+		height = lines.length * 64;
 
 	}
 
 	public void addToScene() {
 		for (int i = 0; i < world.size(); i++) {
-			SceneManager.getCurrentScene().ents.add(world.get(i));
+			SceneManager.getCurrentScene().ents.add(0, world.get(i));
 		}
 	}
 
 	public void moveWorld(int x, int y) {
-		
+
 		yLoc += y;
 		xLoc += x;
-		
+
 	}
 
-	public int getXLocation(){
+	public float getXLocation() {
 		return xLoc;
 	}
-	
-	public int getYLocation(){
+
+	public float getYLocation() {
 		return yLoc;
 	}
-	public int getHeight(){
+
+	public float getHeight() {
 		return height;
 	}
-	
-	public int getWidth(){
+
+	public float getWidth() {
 		return width;
 	}
-	
+
 }

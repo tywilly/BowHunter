@@ -9,10 +9,10 @@ import apcs.entitys.world.World;
 public class PlayerMP extends APlayer{
 	
 	public PlayerMP(int x, int y, String username) {
-		super(x,y);
+		super(0,0);
 		this.playerName = username;
-		this.setWorldX(200);
-		this.setWorldY(200);
+		this.setWorldX(x);
+		this.setWorldY(y);
 	}
 
 	@Override

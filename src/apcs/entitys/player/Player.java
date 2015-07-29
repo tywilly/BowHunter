@@ -1,35 +1,38 @@
 package apcs.entitys.player;
 
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 
+import net.client.protocol.packet.ActionPacket;
+import net.client.protocol.packet.DisconnectPacket;
 import net.client.protocol.packet.MovePacket;
 import apcs.ClientDriver;
-import apcs.entitys.Damageable;
-import apcs.entitys.item.ActionItem;
-import apcs.entitys.item.weapons.Weapon;
-import apcs.entitys.projectile.Projectile;
-import apcs.scenes.EndScene;
+import apcs.LoginForm;
+import apcs.entitys.world.World;
 import apcs.scenes.GameScene;
 
 import com.tywilly.WillyEngine.Engine;
 import com.tywilly.WillyEngine.input.Input;
 import com.tywilly.WillyEngine.input.InputAction;
 import com.tywilly.WillyEngine.input.InputAction.ActionType;
-import com.tywilly.WillyEngine.scene.SceneManager;
 import com.tywilly.WillyEngine.update.Updateable;
 
-public class Player extends APlayer implements Updateable, Input, Damageable {
+public class Player extends APlayer implements Updateable, Input {
 
 	public Player(int x, int y) {
 		super(x, y);
-		this.playerName = "TyWilly";
+		this.playerName = LoginForm.username;
+		this.setWorldX(x);
+		this.setWorldY(y);
 	}
 
 	@Override
 	public void paint(Graphics g) {
 		// TODO Auto-generated method stub
-		g.drawImage(this.getTexture().getImage(), (int)xLoc, (int)yLoc, ((int)xLoc) + this.width, ((int)yLoc) + this.height,
-                0, 0, this.getTexture().getImage().getWidth(), this.getTexture().getImage().getHeight(), null);
+		g.drawImage(this.getTexture().getImage(), (int) xLoc, (int) yLoc,
+				((int) xLoc) + this.width, ((int) yLoc) + this.height, 0, 0,
+				this.getTexture().getImage().getWidth(), this.getTexture()
+						.getImage().getHeight(), null);
 
 	}
 
@@ -46,10 +49,9 @@ public class Player extends APlayer implements Updateable, Input, Damageable {
 				yLoc -= 0.5 * mili;
 			}
 
-			ClientDriver.client.sendPacket(
-					new MovePacket(this.getUUID(), this.getWorldX() + " "
-							+ this.getWorldY()));
-			
+			ClientDriver.client.sendPacket(new MovePacket(this.getUUID(), this
+					.getWorldX() + " " + this.getWorldY()));
+
 		} else if (down) {
 
 			if (yLoc + height / 2 >= Engine.display.getHeight() / 2
@@ -60,10 +62,9 @@ public class Player extends APlayer implements Updateable, Input, Damageable {
 				yLoc += 0.5 * mili;
 			}
 
-			ClientDriver.client.sendPacket(
-					new MovePacket(this.getUUID(), this.getWorldX() + " "
-							+ this.getWorldY()));
-			
+			ClientDriver.client.sendPacket(new MovePacket(this.getUUID(), this
+					.getWorldX() + " " + this.getWorldY()));
+
 		}
 
 		if (right) {
@@ -75,11 +76,10 @@ public class Player extends APlayer implements Updateable, Input, Damageable {
 			} else if (xLoc + width <= Engine.display.getWidth()) {
 				xLoc += 0.5 * mili;
 			}
-			
-			ClientDriver.client.sendPacket(
-					new MovePacket(this.getUUID(), this.getWorldX() + " "
-							+ this.getWorldY()));
-			
+
+			ClientDriver.client.sendPacket(new MovePacket(this.getUUID(), this
+					.getWorldX() + " " + this.getWorldY()));
+
 		} else if (left) {
 
 			if (xLoc + width / 2 <= Engine.display.getWidth() / 2
@@ -88,13 +88,14 @@ public class Player extends APlayer implements Updateable, Input, Damageable {
 			} else if (xLoc >= 0) {
 				xLoc -= 0.5 * mili;
 			}
-			
-			ClientDriver.client.sendPacket(
-					new MovePacket(this.getUUID(), this.getWorldX() + " "
-							+ this.getWorldY()));
-			
+
+			ClientDriver.client.sendPacket(new MovePacket(this.getUUID(), this
+					.getWorldX() + " " + this.getWorldY()));
+
 		}
 
+		healthText.setText("Health: " + this.getHealth());
+		
 	}
 
 	@Override
@@ -123,44 +124,53 @@ public class Player extends APlayer implements Updateable, Input, Damageable {
 				up = false;
 			} else if (e.getKeyCode() == 's') {
 				down = false;
+			}else if(e.getKeyNum() == KeyEvent.VK_ESCAPE){
+				ClientDriver.client.sendPacket(new DisconnectPacket());
+				ClientDriver.client.disconnect();
+				System.exit(0);
 			}
 
 		} else if (e.getAction() == ActionType.MOUSE_DOWN) {
 			if (e.getKeyCode() == '1') {
+				
+				float xDir = e.getMouseX() - (this.xLoc + this.width / 2);
+				float yDir = e.getMouseY() - (this.yLoc + this.height / 2);
 
-				if (inventory.getHandItem() instanceof Weapon) {
+                double angle = Math.atan2(yDir, xDir);
+                float mag = 1.0f;
 
-					float xDir = e.getMouseX() - (this.xLoc + this.width / 2);
-					float yDir = e.getMouseY() - (this.yLoc + this.height / 2);
+                yDir = (float) (mag * Math.sin(angle));
+				
 
-					double angle = Math.atan2(yDir, xDir);
-					float mag = 1.0f;
+                xDir = (float) Math.sqrt(Math.pow(mag, 2)
+                        - Math.pow(yDir, 2));
 
-					yDir = (float) (mag * Math.sin(angle));
-
-					xDir = (float) Math.sqrt(Math.pow(mag, 2)
-							- Math.pow(yDir, 2));
-
-					if (e.getMouseX() < this.getX()) {
-						xDir = -xDir;
-					}
-
-					((Weapon) inventory.getHandItem()).onAction(this, xDir,
-							yDir, (int) Math.toDegrees(angle));
-				} else if (inventory.getHandItem() instanceof ActionItem) {
-					((ActionItem) inventory.getHandItem()).onAction(this);
-				}
-
-			} else if (e.getKeyCode() == '2') {
-
+                if (e.getMouseX() < this.getX())
+                {
+                    xDir = -xDir;
+                }
+				
+				ClientDriver.client.sendPacket(new ActionPacket(this.getUUID(), 1 + "", Math.toDegrees(angle) + " " + xDir + " " + yDir));
+				
+			} else {
+				ClientDriver.client.sendPacket(new ActionPacket(getUUID(), e.getKeyCode() + "", 0 + ""));
 			}
 		}
 
 	}
 
 	@Override
-	public void onDamage(Damageable killer, Projectile projectile) {
+	public void setWorldX(float x) {
 		// TODO Auto-generated method stub
+		this.xLoc = Engine.display.getWidth()/2;
+		World.xLoc = -x;
+	}
+
+	@Override
+	public void setWorldY(float y) {
+		// TODO Auto-generated method stub
+		this.yLoc = Engine.display.getHeight()/2;
+		World.yLoc = -y;
 	}
 
 }

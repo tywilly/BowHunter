@@ -1,32 +1,36 @@
 package apcs.entitys.mob;
 
-import apcs.entitys.Damageable;
+import com.tywilly.WillyEngine.texture.TextureManager;
+
 import apcs.entitys.WorldEntity;
 
-import com.tywilly.WillyEngine.texture.Texture;
-import com.tywilly.WillyEngine.update.Updateable;
+public class Mob extends WorldEntity{
+	
+	int mobId = 0;
+	
+	public Mob(int modId) {
+		super(0, 0, 0, 0, null);
+		
+		this.mobId = modId;
+		
+		switch (mobId) {
+		case 2:
+			
+			this.setTexure(TextureManager.createTexture("assets/characters/obama_sprite_right.png"));
+			
+			break;
 
-public abstract class Mob extends WorldEntity implements Updateable, Damageable{
-	
-	int health = 100;
-	
-	protected boolean isMoving = false;
-	
-	public Mob(int x, int y, int height, int width, Texture texture) {
-		super(x, y, height, width, texture);
-		// TODO Auto-generated constructor stub
-	}
-
-	public int getHealth(){
-		return health;
-	}
-	
-	public void setHealth(int health){
-		this.health = health;
-	}
-	
-	public boolean isMoving(){
-	    return isMoving;
+		default:
+			break;
+		}
+		
+		if(!this.getTexture().isLoaded()){
+			this.getTexture().loadIntoMemery();
+		}
+		
+		this.setWidth(this.getTexture().getImage().getWidth());
+		this.setHeight(this.getTexture().getImage().getHeight());
+		
 	}
 	
 }
