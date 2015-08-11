@@ -10,11 +10,13 @@ import apcs.ClientDriver;
 import apcs.LoginForm;
 import apcs.entitys.world.World;
 import apcs.scenes.GameScene;
+import apcs.scenes.MenuScene;
 
 import com.tywilly.WillyEngine.Engine;
 import com.tywilly.WillyEngine.input.Input;
 import com.tywilly.WillyEngine.input.InputAction;
 import com.tywilly.WillyEngine.input.InputAction.ActionType;
+import com.tywilly.WillyEngine.scene.SceneManager;
 import com.tywilly.WillyEngine.update.Updateable;
 
 public class Player extends APlayer implements Updateable, Input {
@@ -126,9 +128,7 @@ public class Player extends APlayer implements Updateable, Input {
 			} else if (e.getKeyCode() == 's') {
 				down = false;
 			}else if(e.getKeyNum() == KeyEvent.VK_ESCAPE){
-				ClientDriver.client.sendPacket(new DisconnectPacket());
-				ClientDriver.client.disconnect();
-				System.exit(0);
+				SceneManager.loadScene(new MenuScene(SceneManager.getCurrentScene()));
 			}
 
 		} else if (e.getAction() == ActionType.MOUSE_DOWN) {

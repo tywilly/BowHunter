@@ -28,8 +28,8 @@ public class Mob extends WorldEntity{
 			this.getTexture().loadIntoMemery();
 		}
 		
-		this.setWidth(this.getTexture().getImage().getWidth());
-		this.setHeight(this.getTexture().getImage().getHeight());
+		this.setWidth(64);
+		this.setHeight(64);
 		
 	}
 	

@@ -16,7 +16,7 @@ public abstract class APlayer extends WorldEntity
 
     Texture rightTexture;
 
-    Texture leftTexture = TextureManager.createTexture("assets/characters/sarge_left.png");
+    Texture leftTexture = TextureManager.createTexture("assets/characters/warrior.png");
 
     boolean right = false;
 
@@ -43,7 +43,7 @@ public abstract class APlayer extends WorldEntity
     public APlayer(int x, int y)
     {
         super(x, y, 64, 64, TextureManager.createTexture(
-                "assets/characters/sarge_right.png"));
+                "assets/characters/warrior.png"));
         this.getTexture().loadIntoMemery();
         rightTexture = this.getTexture();
         leftTexture.loadIntoMemery();
