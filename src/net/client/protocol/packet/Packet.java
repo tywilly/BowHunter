@@ -1,18 +1,24 @@
 package net.client.protocol.packet;
 
+import java.net.DatagramPacket;
+
 public abstract class Packet {
 
 	byte packetId;
 	
 	String payload = "";
 	
+	DatagramPacket pack;
+	
 	public Packet(){
-		
 	}
 	
 	public Packet(byte id, String payload){
 		this.packetId = id;
 		this.payload = payload;
+		
+		
+		
 	}
 	
 	public abstract void onRecieve(byte id, String payload);

@@ -1,5 +1,6 @@
 package apcs.scenes;
 
+import apcs.ClientDriver;
 import apcs.entitys.ui.Button;
 import apcs.entitys.ui.Button.OnClickAction;
 
@@ -12,6 +13,7 @@ public class MenuScene extends Scene {
 	Scene previousScene;
 
 	Button returnBtn;
+	Button quitBtn;
 
 	public MenuScene(Scene prevScene) {
 		this.previousScene = prevScene;
@@ -21,22 +23,29 @@ public class MenuScene extends Scene {
 	public void onCreate() {
 		// TODO Auto-generated method stub
 
-		if (previousScene != null) {
+		returnBtn = new Button(Engine.display.getWidth() / 2 - 100, Engine.display.getHeight() / 2 - 50, 4, 200, 75);
 
-			returnBtn = new Button(Engine.display.getWidth() / 2,
-					Engine.display.getHeight() / 2, 4, 200, 75);
+		returnBtn.setOnClickAction(new OnClickAction() {
+			@Override
+			public void onClick() {
+				// TODO Auto-generated method stub
+				SceneManager.swapScene(previousScene);
+			}
+		});
 
-			returnBtn.setOnClickAction(new OnClickAction() {
-				@Override
-				public void onClick() {
-					// TODO Auto-generated method stub
-					SceneManager.loadScene(previousScene);
-				}
-			});
-
-			this.addEntity(returnBtn);
-			
-		}
+		quitBtn = new Button(Engine.display.getWidth()/2 - 100, Engine.display.getHeight() /2 + 100, 4, 200, 75);
+		
+		quitBtn.setOnClickAction(new OnClickAction() {
+			@Override
+			public void onClick() {
+				// TODO Auto-generated method stub
+				ClientDriver.client.disconnect();
+			}
+		});
+		
+		
+		this.addEntity(returnBtn);
+		this.addEntity(quitBtn);
 
 	}
 
