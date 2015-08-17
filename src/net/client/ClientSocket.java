@@ -17,7 +17,7 @@ public class ClientSocket {
 
 	PacketManager packetMan = new PacketManager();
 
-	byte[] receievBuffer = new byte[1024];
+	byte[] receiveBuffer = new byte[2048];
 	byte[] sendBuffer = new byte[1024];
 
 	DatagramPacket recPacket;
@@ -26,9 +26,9 @@ public class ClientSocket {
 	public ClientSocket() {
 		try {
 			socket = new DatagramSocket();
-			socket.connect(InetAddress.getByName("tywilly.com"), 2554);
+			socket.connect(InetAddress.getByName("127.0.0.1"), 2554);
 
-			recPacket = new DatagramPacket(receievBuffer, receievBuffer.length);
+			recPacket = new DatagramPacket(receiveBuffer, receiveBuffer.length);
 			sendPacket = new DatagramPacket(sendBuffer, sendBuffer.length);
 
 		} catch (IOException e) {
