@@ -16,6 +16,8 @@ public class SpawnEntityPacket extends Packet{
 	public void onRecieve(byte id, String payload) {
 		// TODO Auto-generated method stub
 		
+		System.out.println(payload);
+		
 		String[] pay = payload.split(" ");
 		
 		switch (Integer.parseInt(pay[1])) {

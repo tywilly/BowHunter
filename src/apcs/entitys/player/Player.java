@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 import net.client.protocol.packet.ActionPacket;
-import net.client.protocol.packet.DisconnectPacket;
 import net.client.protocol.packet.MovePacket;
 import apcs.ClientDriver;
 import apcs.LoginForm;
@@ -164,14 +163,14 @@ public class Player extends APlayer implements Updateable, Input {
 	public void setWorldX(float x) {
 		// TODO Auto-generated method stub
 		this.xLoc = Engine.display.getWidth()/2;
-		World.xLoc = -x;
+		World.xLoc = -x + this.xLoc;
 	}
 
 	@Override
 	public void setWorldY(float y) {
 		// TODO Auto-generated method stub
 		this.yLoc = Engine.display.getHeight()/2;
-		World.yLoc = -y;
+		World.yLoc = -y + this.yLoc;
 	}
 
 }

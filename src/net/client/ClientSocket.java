@@ -66,8 +66,6 @@ public class ClientSocket {
 						String payload = line.substring(line.indexOf(" ") + 1, line.length());
 
 						packetMan.getPacketById(id).onRecieve(id, payload);
-						
-						System.out.println(payload);
 
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
@@ -89,7 +87,7 @@ public class ClientSocket {
 	public void sendPacket(Packet pack) {
 		try {
 			sendPacket.setData(pack.getData().getBytes());
-			sendPacket.setLength(pack.getData().getBytes().length);
+			//sendPacket.setLength(pack.getData().getBytes().length);
 
 			socket.send(sendPacket);
 		} catch (IOException e) {
