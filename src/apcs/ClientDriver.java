@@ -19,15 +19,6 @@ public class ClientDriver {
 	Engine engine;
 
 	public ClientDriver() {
-
-		UpdateFetcher uf = new UpdateFetcher();
-		
-		try {
-			uf.fetchUpdates();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		engine = new Engine(Display.createDisplay(1280,720));
 		
