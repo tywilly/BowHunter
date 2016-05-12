@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import net.client.protocol.packet.ChatPacket;
 import net.client.protocol.packet.DespawnEntityPacket;
+import net.client.protocol.packet.HeartBeatPacket;
 import net.client.protocol.packet.LoginPacket;
 import net.client.protocol.packet.MovePacket;
 import net.client.protocol.packet.Packet;
@@ -33,6 +34,8 @@ public class PacketManager {
 		packets[10] = new WorldPacket();
 		
 		packets[11] = new ChatPacket();
+		
+		packets[18] = new HeartBeatPacket("");
 		
 	}
 	

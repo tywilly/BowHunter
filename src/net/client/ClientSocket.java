@@ -1,31 +1,36 @@
 package net.client;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 
+import apcs.ClientDriver;
+import apcs.scenes.GameScene;
 import net.client.protocol.PacketManager;
 import net.client.protocol.packet.DisconnectPacket;
 import net.client.protocol.packet.LoginPacket;
 import net.client.protocol.packet.Packet;
-import apcs.scenes.GameScene;
 
 public class ClientSocket {
 
-	Socket socket;
-	PrintWriter out;
-	BufferedReader in;
+	DatagramSocket socket;
 
 	PacketManager packetMan = new PacketManager();
 
+	byte[] receiveBuffer = new byte[2048];
+	byte[] sendBuffer = new byte[1024];
+
+	DatagramPacket recPacket;
+	DatagramPacket sendPacket;
+
 	public ClientSocket() {
 		try {
-			socket = new Socket("tywilly.com", 2554);
+			socket = new DatagramSocket();
+			socket.connect(InetAddress.getByName(ClientDriver.HOST_NAME), 2554);
 
-			out = new PrintWriter(socket.getOutputStream());
-			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			recPacket = new DatagramPacket(receiveBuffer, receiveBuffer.length);
+			sendPacket = new DatagramPacket(sendBuffer, sendBuffer.length);
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -52,13 +57,18 @@ public class ClientSocket {
 					String line;
 
 					try {
-						line = in.readLine();
+
+						socket.receive(recPacket);
+
+						line = new String(recPacket.getData(), 0 , recPacket.getLength());
 
 						byte id = Byte.parseByte(line.substring(0, line.indexOf(" ")));
 
 						String payload = line.substring(line.indexOf(" ") + 1, line.length());
 
 						packetMan.getPacketById(id).onRecieve(id, payload);
+						
+						System.out.println(payload);
 
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
@@ -78,24 +88,22 @@ public class ClientSocket {
 	}
 
 	public void sendPacket(Packet pack) {
-		out.println(pack.getData());
-		out.flush();
-	}
-
-	public void disconnect() {
-
 		try {
+			sendPacket.setData(pack.getData().getBytes());
+			sendPacket.setLength(pack.getData().getBytes().length);
 
-			sendPacket(new DisconnectPacket());
-
-			socket.close();
-
-			System.exit(0);
+			socket.send(sendPacket);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
+	}
+
+	public void disconnect() {
+		sendPacket(new DisconnectPacket());
+		socket.close();
+		System.exit(0);
 	}
 
 }
