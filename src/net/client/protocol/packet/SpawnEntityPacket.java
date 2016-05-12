@@ -1,8 +1,11 @@
 package net.client.protocol.packet;
 
 import com.tywilly.WillyEngine.scene.SceneManager;
+import com.tywilly.WillyEngine.texture.Texture;
+import com.tywilly.WillyEngine.texture.TextureManager;
 
 import apcs.entitys.Arrow;
+import apcs.entitys.WorldEntity;
 import apcs.entitys.mob.Mob;
 
 
@@ -12,8 +15,7 @@ public class SpawnEntityPacket extends Packet{
 		super((byte)4, "");
 	}
 	
-	@Override
-	public void onRecieve(byte id, String payload) {
+	public void oldonRecieve(byte id, String payload) {
 		// TODO Auto-generated method stub
 		
 		String[] pay = payload.split(" ");
@@ -44,6 +46,28 @@ public class SpawnEntityPacket extends Packet{
 			
 			break;
 		}
+		
+	}
+
+	@Override
+	public void onRecieve(byte id, String payload) {
+		// TODO Auto-generated method stub
+		
+		String[] pay = payload.split(" ");
+		
+		Texture texture = TextureManager.createTexture(pay[1]);
+		
+		if(!texture.isLoaded()){
+			texture.loadIntoMemery();
+		}
+		
+		WorldEntity we = new WorldEntity(Float.parseFloat(pay[2]), Float.parseFloat(pay[3]),
+				texture.getImage().getHeight(), texture.getImage().getWidth(), texture);
+		
+		we.setUUID(pay[0]);
+		
+		SceneManager.getCurrentScene().addEntity(we);
+		
 		
 	}
 
