@@ -9,7 +9,7 @@ import com.tywilly.WillyEngine.texture.TextureManager;
 public class Grass extends Sprite {
 
 	Texture textre = TextureManager
-			.createTexture("assets/world/ground/grass.png");
+			.createTexture("assets/world/tiles/grass.png");
 
 	public Grass(int x, int y) {
 		super(x, y, 0, 64, 64, null);

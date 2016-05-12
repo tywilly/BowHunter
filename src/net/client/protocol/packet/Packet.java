@@ -17,8 +17,6 @@ public abstract class Packet {
 		this.packetId = id;
 		this.payload = payload;
 		
-		
-		
 	}
 	
 	public abstract void onRecieve(byte id, String payload);

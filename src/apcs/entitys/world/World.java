@@ -23,11 +23,13 @@ public class World {
 
 		for (int x=0;x<lines.length;x++) {
 
+			//System.out.println(lines[x]);
+			
 			for (int i = 0; i < lines[x].length(); i++) {
 				if (lines[x].charAt(i) == '1') {
 					worldTile = new Grass(i * 64, x * 64);
 				} else {
-					System.out.println("Split broke!");
+					System.out.println("Error: World parse wrong tile ID" + lines[x].charAt(i));
 				}
 				world.add(worldTile);
 			}
