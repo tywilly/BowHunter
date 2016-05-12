@@ -5,6 +5,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
+import apcs.ClientDriver;
 import apcs.scenes.GameScene;
 import net.client.protocol.PacketManager;
 import net.client.protocol.packet.DisconnectPacket;
@@ -26,7 +27,7 @@ public class ClientSocket {
 	public ClientSocket() {
 		try {
 			socket = new DatagramSocket();
-			socket.connect(InetAddress.getByName("127.0.0.1"), 2554);
+			socket.connect(InetAddress.getByName(ClientDriver.HOST_NAME), 2554);
 
 			recPacket = new DatagramPacket(receiveBuffer, receiveBuffer.length);
 			sendPacket = new DatagramPacket(sendBuffer, sendBuffer.length);
