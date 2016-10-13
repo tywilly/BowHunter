@@ -69,7 +69,7 @@ public class LoginForm extends JFrame implements ActionListener{
 			
 			this.setVisible(false);
 			
-			ClientDriver driver = new ClientDriver();
+			ClientDriver driver = new ClientDriver(password.getText());
 			
 		}
 		

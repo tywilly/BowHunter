@@ -12,13 +12,15 @@ import com.tywilly.WillyEngine.scene.SceneManager;
 
 public class ClientDriver {
 
-	public static final String HOST_NAME = "127.0.0.1";
+	public static String HOST_NAME = "127.0.0.1";
 	
 	public static ClientSocket client;
 
 	Engine engine;
 
-	public ClientDriver() {
+	public ClientDriver(String host) {
+		
+		HOST_NAME = host;
 		
 		engine = new Engine(Display.createDisplay(1280,720));
 		
