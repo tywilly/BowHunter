@@ -68,7 +68,7 @@ public class ClientSocket {
 
 						packetMan.getPacketById(id).onRecieve(id, payload);
 						
-						System.out.println(payload);
+						//System.out.println(payload);
 
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
